@@ -102,10 +102,12 @@ const App = () => {
 	)
 
 	return (
-		<div>
-			<Notification message={message} />
-			{user === null ? loginForm() : renderLol()}
-		</div>
+		
+			<div>
+				<Notification message={message} />
+				{user === null ? loginForm() : renderLol()}
+			</div>
+		
 	)
 }
 export default App
