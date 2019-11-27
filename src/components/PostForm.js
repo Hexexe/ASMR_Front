@@ -8,17 +8,34 @@ const purgeReset = p => {
 }
 const postForm = ({ addPost, titleS, contentS }) => (
 	<div>
-		<h1>Create new</h1>
+		<h2>Kvaak</h2>
 		<form onSubmit={addPost}>
-			<div>
-				Title:
-				<input {...purgeReset(titleS)} />
+			<div className='form-group'>
+				<label className='sr-only'>Title</label>
+				<input
+					className='form-control col-form-label-lg'
+					{...purgeReset(titleS)}
+					placeholder='title'
+				/>
 			</div>
 			<div>
-				Content:
-				<input {...purgeReset(contentS)} />
+				<label className='sr-only'>Content</label>
+				<textarea
+					className='form-control'
+					id='exampleFormControlTextarea1'
+					rows='3'
+					{...purgeReset(contentS)}
+					placeholder='content'
+				></textarea>
 			</div>
-			<button type='submit'>Create</button>
+			<div className='d-flex justify-content-end'>
+				<button
+					type='submit'
+					className='btn btn-primary d-flex justify-content-end'
+				>
+					Publish
+				</button>
+			</div>
 		</form>
 	</div>
 )
