@@ -6,26 +6,23 @@ const purgeReset = p => {
 	const { reset, ...purged } = p
 	return purged
 }
-const postForm = ({ addPost, titleS, contentS }) => (
+const commentForm = ({}) => (
 	<div>
-		<h1>Create new</h1>
-		<form onSubmit={addPost}>
+		<form>
 			<div>
-				Title:
-				<input {...purgeReset(titleS)} />
+				Your reply:
+				<input />
 			</div>
-			<div>
-				Content:
-				<input {...purgeReset(contentS)} />
-			</div>
-			<button type='submit'>Create</button>
+			<button className='btn btn-primary' type='submit'>
+				Comment
+			</button>
 		</form>
 	</div>
 )
 
-postForm.propTypes = {
+commentForm.propTypes = {
 	addPost: PropTypes.func.isRequired,
 	titleS: PropTypes.object.isRequired,
 	contentS: PropTypes.object.isRequired
 }
-export default postForm
+export default commentForm

@@ -2,41 +2,68 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const purgeReset = p => {
-  // eslint-disable-next-line no-unused-vars
-  const { reset, ...purged } = p
-  return purged
+	// eslint-disable-next-line no-unused-vars
+	const { reset, ...purged } = p
+	return purged
 }
+
+const epicStyling = {
+	paddingLeft: '10px'
+}
+
 const LoginForm = ({ handleLogin, username, password }) => (
-  <>
-    <nav className='navbar navbar-expand-md navbar-dark bg-dark'>
-      <div className='collapse navbar-collapse'>
-        <form className='form-inline my-2 my-lg-0 navbar-nav ml-auto' onSubmit={handleLogin}>
-          <div className='form-group mx-sm-0 mb-2'>
-            <input
-              className='form-control mr-sm-0'
-              placeholder='username'
-              {...purgeReset(username)}
-            />
-          </div>
-          <div className='form-group mx-sm-1 mb-2'>
-            <input
-              className='form-control mr-sm-0'
-              placeholder='username'
-              {...purgeReset(password)}
-            />
-          </div>
-          <button type='submit' className='btn btn-primary mb-2'>
-            login
-          </button>
-        </form>
-      </div>
-    </nav>
-  </>
+	<nav className='navbar fixed-top navbar-expand-md navbar-dark bg-dark'>
+		<button
+			className='navbar-toggler navbar-toggler-right'
+			type='button'
+			data-toggle='collapse'
+			data-target='#navbarNavAltMarkup'
+			aria-controls='navbarNavAltMarkup'
+			aria-expanded='false'
+			aria-label='Toggle navigation'
+		>
+			<span className='navbar-toggler-icon'></span>
+		</button>
+		<div className='container'>
+			<div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
+				<div className='navbar-nav ml-auto'>
+					<form className='form-inline ' onSubmit={handleLogin}>
+						<div className='form-row'>
+							<div className='col'>
+								<input
+									className='form-control mr-sm-0 '
+									placeholder='username'
+									{...purgeReset(username)}
+								/>
+							</div>
+							<div className='col'>
+								<input
+									className='form-control mr-sm-0'
+									placeholder='username'
+									{...purgeReset(password)}
+								/>
+							</div>
+							<div className='col'>
+								<button type='submit' className='btn btn-primary'>
+									login
+								</button>
+							</div>
+							<div className='col'>
+								<button className='btn btn-primary' type='button'>
+									register
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
 )
 
 LoginForm.propTypes = {
-  handleLogin: PropTypes.func.isRequired,
-  username: PropTypes.object.isRequired,
-  password: PropTypes.object.isRequired
+	handleLogin: PropTypes.func.isRequired,
+	username: PropTypes.object.isRequired,
+	password: PropTypes.object.isRequired
 }
 export default LoginForm
