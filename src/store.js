@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import postReducer from './reducers/postReducer'
 import authReducer from './reducers/authReducer'
 
@@ -7,6 +8,6 @@ const reducer = combineReducers({
 	posts: postReducer,
 	auth: authReducer
 })
-const store = createStore(reducer, applyMiddleware(thunk))
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store
