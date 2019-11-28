@@ -5,7 +5,6 @@ import { initializePosts } from './reducers/postReducer'
 import PostList from './components/PostList'
 import PostForm from './components/PostForm'
 import LoginForm from './components/LoginForm'
-import Togglable from './components/Togglable'
 import postService from './services/posts'
 import loginService from './services/login'
 import Footer from './components/Footer'
@@ -52,17 +51,21 @@ const App = props => {
 	}
 
 	const loginForm = () => (
-		<LoginForm handleLogin={handleLogin} username={username} password={password} />
+		<LoginForm
+			handleLogin={handleLogin}
+			username={username}
+			password={password}
+		/>
 	)
 
 	const logoutForm = () => (
 		<div>
-			<nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-				<div className="collapse navbar-collapse"></div>
-				<p className="mb-2">
+			<nav className='navbar fixed-top navbar-expand-md navbar-dark bg-dark'>
+				<div className='collapse navbar-collapse'></div>
+				<p className='mb-2'>
 					<b>{user.name} </b>logged in{' '}
 				</p>
-				<button onClick={logout} className="btn btn-danger mb-2">
+				<button onClick={logout} className='btn btn-danger mb-2 btn-space-left'>
 					logout
 				</button>
 			</nav>
@@ -75,15 +78,21 @@ const App = props => {
 			<br></br>
 			<br></br>
 			<br></br>
-			<h1>Posts</h1>
-			<div className="col-md-4 col-md-offset-4 mx-auto">
-				<Togglable buttonLabel="New Post" ref={postFormRef}>
-					<PostForm />
-				</Togglable>
-				<PostList />
+
+			<div className='mx-auto'>
+				{user === null ? (
+					loginForm()
+				) : (
+					<>
+						<PostForm />
+					</>
+				)}
+				<h1>Posts</h1>
 			</div>
 
-			<div className="row justify-content-center"></div>
+			<PostList />
+
+			<div className='row justify-content-center'></div>
 			<Footer />
 		</div>
 	)

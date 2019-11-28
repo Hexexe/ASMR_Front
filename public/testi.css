@@ -2,5 +2,11 @@ h1 {
 	text-align: center;
 }
 .inputfield {
-	height: 150px;
+	height: 350px;
+}
+.btn-space-left {
+	margin-left: 10px;
+}
+.btn-space-top {
+	margin-top: 10px;
 }

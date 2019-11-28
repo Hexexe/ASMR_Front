@@ -1,14 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import RegisterForm from './RegisterForm'
 
 const purgeReset = p => {
 	// eslint-disable-next-line no-unused-vars
 	const { reset, ...purged } = p
 	return purged
-}
-
-const epicStyling = {
-	paddingLeft: '10px'
 }
 
 const LoginForm = ({ handleLogin, username, password }) => (
@@ -49,9 +46,7 @@ const LoginForm = ({ handleLogin, username, password }) => (
 								</button>
 							</div>
 							<div className='col'>
-								<button className='btn btn-primary' type='button'>
-									register
-								</button>
+								<RegisterForm></RegisterForm>
 							</div>
 						</div>
 					</form>
