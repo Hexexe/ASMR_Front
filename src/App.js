@@ -71,7 +71,7 @@ const App = props => {
 			</nav>
 		</div>
 	)
-
+	//yay
 	return (
 		<div>
 			{user === null ? loginForm() : logoutForm()}
