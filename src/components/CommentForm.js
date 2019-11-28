@@ -13,16 +13,16 @@ const commentForm = ({}) => (
 				Your reply:
 				<input />
 			</div>
-			<button className='btn btn-primary' type='submit'>
+			<button className="btn btn-primary" type="submit">
 				Comment
 			</button>
 		</form>
 	</div>
 )
 
-commentForm.propTypes = {
+/* commentForm.propTypes = {
 	addPost: PropTypes.func.isRequired,
 	titleS: PropTypes.object.isRequired,
 	contentS: PropTypes.object.isRequired
-}
+} */
 export default commentForm
