@@ -6,6 +6,7 @@ import PostList from './components/PostList'
 import PostForm from './components/PostForm'
 import LoginForm from './components/LoginForm'
 import postService from './services/posts'
+import commentService from './services/comments'
 import loginService from './services/login'
 import Footer from './components/Footer'
 
@@ -25,6 +26,7 @@ const App = props => {
 			const user = JSON.parse(loggedUserJSON)
 			setUser(user)
 			postService.setToken(user.token)
+			commentService.setToken(user.token)
 		}
 	}, [])
 
@@ -37,6 +39,7 @@ const App = props => {
 			})
 			window.localStorage.setItem('currentUser', JSON.stringify(user))
 			postService.setToken(user.token)
+			commentService.setToken(user.token)
 			setUser(user)
 			username.reset()
 			password.reset()
@@ -51,21 +54,17 @@ const App = props => {
 	}
 
 	const loginForm = () => (
-		<LoginForm
-			handleLogin={handleLogin}
-			username={username}
-			password={password}
-		/>
+		<LoginForm handleLogin={handleLogin} username={username} password={password} />
 	)
 
 	const logoutForm = () => (
 		<div>
-			<nav className='navbar fixed-top navbar-expand-md navbar-dark bg-dark'>
-				<div className='collapse navbar-collapse'></div>
-				<p className='mb-2'>
+			<nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+				<div className="collapse navbar-collapse"></div>
+				<p className="mb-2">
 					<b>{user.name} </b>logged in{' '}
 				</p>
-				<button onClick={logout} className='btn btn-danger mb-2 btn-space-left'>
+				<button onClick={logout} className="btn btn-danger mb-2 btn-space-left">
 					logout
 				</button>
 			</nav>
@@ -79,7 +78,7 @@ const App = props => {
 			<br></br>
 			<br></br>
 
-			<div className='mx-auto'>
+			<div className="mx-auto">
 				{user === null ? (
 					loginForm()
 				) : (
@@ -92,7 +91,7 @@ const App = props => {
 
 			<PostList />
 
-			<div className='row justify-content-center'></div>
+			<div className="row justify-content-center"></div>
 			<Footer />
 		</div>
 	)
