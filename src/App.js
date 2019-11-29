@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useField } from './hooks'
 import { connect } from 'react-redux'
 import { initializePosts } from './reducers/postReducer'
+import { initializeComments } from './reducers/commentReducer'
 import PostList from './components/PostList'
 import PostForm from './components/PostForm'
 import LoginForm from './components/LoginForm'
@@ -18,6 +19,7 @@ const App = props => {
 
 	useEffect(() => {
 		props.initializePosts()
+		props.initializeComments()
 	}, [props])
 
 	useEffect(() => {
@@ -96,4 +98,4 @@ const App = props => {
 		</div>
 	)
 }
-export default connect(null, { initializePosts })(App)
+export default connect(null, { initializePosts, initializeComments })(App)
