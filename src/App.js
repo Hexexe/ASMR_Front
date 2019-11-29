@@ -63,7 +63,9 @@ const App = props => {
 		<div>
 			<nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
 				<div className="collapse navbar-collapse"></div>
+
 				<p className="mb-2">
+
 					<b>{user.name} </b>logged in{' '}
 				</p>
 				<button onClick={logout} className="btn btn-danger mb-2 btn-space-left">
@@ -78,8 +80,7 @@ const App = props => {
 			{user === null ? loginForm() : logoutForm()}
 			<br></br>
 			<br></br>
-			<br></br>
-
+			<img src={require('./images/logo.png')} className="" alt="kuva" width="100%"></img>
 			<div className="mx-auto">
 				{user === null ? (
 					loginForm()
@@ -88,6 +89,7 @@ const App = props => {
 						<PostForm />
 					</>
 				)}
+
 				<h1>Posts</h1>
 			</div>
 
