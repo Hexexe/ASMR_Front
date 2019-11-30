@@ -8,19 +8,27 @@ const epicStyling = {
 
 const CommentList = props => {
 	const comments = props.comments
+	const id = props.id
 	return (
 		<div>
-			{comments.map(comment => (
-				<div className="card text-white bg-dark mb-3 mx-auto " style={epicStyling} key={comment.id}>
-					<p className="card-body">{comment.content}</p>
-				</div>
-			))}
+			{comments
+				.filter(comment => comment.post === id)
+				.map(comment => (
+					<div
+						className="card text-white bg-dark mb-3 mx-auto "
+						style={epicStyling}
+						key={comment.id}
+					>
+						<p className="card-body">{comment.content}</p>
+					</div>
+				))}
 		</div>
 	)
 }
 const mapStateToProps = state => {
 	return {
-		comments: state.comments
+		comments: state.comments,
+		posts: state.posts
 	}
 }
 //const mapDispatchToProps = { setNotification, vote }

@@ -23,7 +23,6 @@ const commentReducer = (state = [], action) => {
 		case 'NEW_COMMENT':
 			return state.concat(action.data)
 		case 'INIT_COMMENTS':
-			console.log(action.data)
 			return action.data
 		default:
 			return state

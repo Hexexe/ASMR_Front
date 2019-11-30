@@ -15,14 +15,22 @@ const PostList = props => {
 		<div>
 			{posts.map(post => (
 				<div className="media text-white bg-dark mb-3 mx-auto " style={epicStyling} key={post.id}>
-					<img src={require('../images/testi.png')} className="mr-3 fluid" alt="kuva" width="64" height="64">
-					</img><div className="media-body"><h2 className="mt-0">{post.title}</h2>
+					<img
+						src={require('../images/testi.png')}
+						className="mr-3 fluid"
+						alt="kuva"
+						width="64"
+						height="64"
+					></img>
+					<div className="media-body">
+						<h2 className="mt-0">{post.title}</h2>
 						<p className="">{post.content}</p>
 						<Togglable buttonLabel="Comment" ref={postFormRef}>
-							<CommentForm />
-							<CommentList />
+							<CommentForm id={post.id} />
+							<CommentList id={post.id} />
 						</Togglable>
-					</div></div>
+					</div>
+				</div>
 			))}
 		</div>
 	)

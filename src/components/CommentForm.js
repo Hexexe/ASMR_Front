@@ -4,11 +4,12 @@ import { addComment } from '../reducers/commentReducer'
 import { connect } from 'react-redux'
 
 const CommentForm = props => {
+	const id = props.id
 	const addCommentN = async e => {
 		e.preventDefault()
 		const content = e.target.content.value
 		e.target.content.value = ''
-		props.addComment({ content })
+		props.addComment({ id, content })
 	}
 
 	return (
@@ -31,6 +32,11 @@ const CommentForm = props => {
 	titleS: PropTypes.object.isRequired,
 	contentS: PropTypes.object.isRequired
 } */
+const mapStateToProps = state => {
+	return {
+		posts: state.posts
+	}
+}
 const mapDispatchToProps = { addComment }
-const ConnectedComments = connect(null, mapDispatchToProps)(CommentForm)
+const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(CommentForm)
 export default ConnectedComments
