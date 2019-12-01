@@ -10,8 +10,20 @@ import {
 	Label,
 	Input
 } from 'reactstrap'
+import { createUser } from '../reducers/registerReducer'
 
 const RegisterForm = props => {
+	const createUsern = async e => {
+		e.preventDefault()
+
+		const username = e.target.username.value
+		const password = e.target.password.value
+		e.target.username.value = ''
+		e.target.password.value = ''
+		console.log('lmao')
+		props.createUser({ username, password })
+	}
+
 	const { className } = props
 
 	const [modal, setModal] = useState(false)
@@ -28,18 +40,22 @@ const RegisterForm = props => {
 					Register
 				</ModalHeader>
 				<ModalBody className='text-muted'>
-					<Form>
+					<Form onSubmit={createUsern}>
 						<FormGroup>
-							<Label for='exampleEmail'>Email</Label>
+							<Label for='exampleEmail'>
+								<b>Usernamea</b>
+							</Label>
 							<Input
-								type='email'
-								name='email'
+								type='username'
+								name='username'
 								id='exampleEmail'
-								placeholder='example@mail.com'
+								placeholder='matti8'
 							/>
 						</FormGroup>
 						<FormGroup>
-							<Label for='examplePassword'>Password</Label>
+							<Label for='examplePassword'>
+								<b>Password</b>
+							</Label>
 							<Input
 								type='password'
 								name='password'
@@ -47,7 +63,6 @@ const RegisterForm = props => {
 								placeholder='very secure password'
 							/>
 						</FormGroup>
-
 						<FormGroup>
 							<Label for='exampleSelect'>Gender</Label>
 							<Input type='select' name='select' id='exampleSelect'>
@@ -61,13 +76,12 @@ const RegisterForm = props => {
 								<Input type='checkbox' /> I agree to the terms of service
 							</Label>
 						</FormGroup>
-						<Button>Submit</Button>
+						<Button color='primary' type='submit'>
+							Register
+						</Button>{' '}
 					</Form>
 				</ModalBody>
 				<ModalFooter>
-					<Button color='primary' onClick={toggle}>
-						Register
-					</Button>{' '}
 					<Button color='secondary' onClick={toggle}>
 						Cancel
 					</Button>

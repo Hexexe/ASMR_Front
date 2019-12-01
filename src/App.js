@@ -10,6 +10,7 @@ import postService from './services/posts'
 import commentService from './services/comments'
 import loginService from './services/login'
 import Footer from './components/Footer'
+import LogoutForm from './components/LogoutForm'
 
 const App = props => {
 	const [user, setUser] = useState(null)
@@ -55,47 +56,42 @@ const App = props => {
 		setUser(null)
 	}
 
-	const loginForm = () => (
-		<LoginForm handleLogin={handleLogin} username={username} password={password} />
-	)
-
-	const logoutForm = () => (
-		<div>
-			<nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-				<div className="collapse navbar-collapse"></div>
-
-				<p className="mb-2">
-
-					<b>{user.name} </b>logged in{' '}
-				</p>
-				<button onClick={logout} className="btn btn-danger mb-2 btn-space-left">
-					logout
-				</button>
-			</nav>
-		</div>
-	)
-	//yay
+	//yaysdfsdf
 	return (
 		<div>
-			{user === null ? loginForm() : logoutForm()}
+			{user === null ? (
+				<LoginForm
+					handleLogin={handleLogin}
+					username={username}
+					password={password}
+				/>
+			) : (
+				<LogoutForm user={user} logout={logout}></LogoutForm>
+			)}
 			<br></br>
 			<br></br>
-			<img src={require('./images/logo.png')} className="" alt="kuva" width="100%"></img>
-			<div className="mx-auto">
+			<img
+				src={require('./images/logo.png')}
+				className=''
+				alt='kuva'
+				width='100%'
+			></img>
+			<div className='mx-auto'>
 				{user === null ? (
-					loginForm()
+					<LoginForm
+						handleLogin={handleLogin}
+						username={username}
+						password={password}
+					/>
 				) : (
 					<>
 						<PostForm />
 					</>
 				)}
-
 				<h1>Posts</h1>
 			</div>
-
 			<PostList />
-
-			<div className="row justify-content-center"></div>
+			<div className='row justify-content-center'></div>
 			<Footer />
 		</div>
 	)

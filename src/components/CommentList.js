@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 const postFormRef = React.createRef()
 const epicStyling = {
-	width: '55rem'
+	width: '45rem'
 }
 
 const CommentList = props => {
@@ -15,11 +15,11 @@ const CommentList = props => {
 				.filter(comment => comment.post === id)
 				.map(comment => (
 					<div
-						className="card text-white bg-dark mb-3 mx-auto "
+						className='card mb-1 text-muted'
 						style={epicStyling}
 						key={comment.id}
 					>
-						<p className="card-body">{comment.content}</p>
+						<p className='card-body'>{comment.content}</p>
 					</div>
 				))}
 		</div>
