@@ -11,16 +11,15 @@ import {
 	Input
 } from 'reactstrap'
 import { createUser } from '../reducers/registerReducer'
+import { connect } from 'react-redux'
 
 const RegisterForm = props => {
-	const createUsern = async e => {
+	const createUserN = async e => {
 		e.preventDefault()
-
 		const username = e.target.username.value
 		const password = e.target.password.value
 		e.target.username.value = ''
 		e.target.password.value = ''
-		console.log('lmao')
 		props.createUser({ username, password })
 	}
 
@@ -32,40 +31,35 @@ const RegisterForm = props => {
 
 	return (
 		<div>
-			<Button color='primary' onClick={toggle}>
+			<Button color="primary" onClick={toggle}>
 				Register
 			</Button>
 			<Modal isOpen={modal} toggle={toggle} className={className}>
-				<ModalHeader className='text-muted' toggle={toggle}>
+				<ModalHeader className="text-muted" toggle={toggle}>
 					Register
 				</ModalHeader>
-				<ModalBody className='text-muted'>
-					<Form onSubmit={createUsern}>
+				<ModalBody className="text-muted">
+					<Form onSubmit={createUserN}>
 						<FormGroup>
-							<Label for='exampleEmail'>
+							<Label for="exampleEmail">
 								<b>Usernamea</b>
 							</Label>
-							<Input
-								type='username'
-								name='username'
-								id='exampleEmail'
-								placeholder='matti8'
-							/>
+							<Input type="username" name="username" id="exampleEmail" placeholder="matti8" />
 						</FormGroup>
 						<FormGroup>
-							<Label for='examplePassword'>
+							<Label for="examplePassword">
 								<b>Password</b>
 							</Label>
 							<Input
-								type='password'
-								name='password'
-								id='examplePassword'
-								placeholder='very secure password'
+								type="password"
+								name="password"
+								id="examplePassword"
+								placeholder="very secure password"
 							/>
 						</FormGroup>
 						<FormGroup>
-							<Label for='exampleSelect'>Gender</Label>
-							<Input type='select' name='select' id='exampleSelect'>
+							<Label for="exampleSelect">Gender</Label>
+							<Input type="select" name="select" id="exampleSelect">
 								<option>Male</option>
 								<option>Female</option>
 								<option>Apache</option>
@@ -73,16 +67,16 @@ const RegisterForm = props => {
 						</FormGroup>
 						<FormGroup check>
 							<Label check>
-								<Input type='checkbox' /> I agree to the terms of service
+								<Input type="checkbox" /> I agree to the terms of service
 							</Label>
 						</FormGroup>
-						<Button color='primary' type='submit'>
+						<Button color="primary" type="submit">
 							Register
 						</Button>{' '}
 					</Form>
 				</ModalBody>
 				<ModalFooter>
-					<Button color='secondary' onClick={toggle}>
+					<Button color="secondary" onClick={toggle}>
 						Cancel
 					</Button>
 				</ModalFooter>
@@ -90,5 +84,6 @@ const RegisterForm = props => {
 		</div>
 	)
 }
-
-export default RegisterForm
+const mapDispatchToProps = { createUser }
+const ConnectedReg = connect(null, mapDispatchToProps)(RegisterForm)
+export default ConnectedReg

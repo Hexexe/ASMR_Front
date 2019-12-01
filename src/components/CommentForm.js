@@ -9,9 +9,6 @@ const CommentForm = props => {
 	const epicStyling = {
 		width: '45rem'
 	}
-
-	console.log(props)
-
 	const id = props.id
 	const addCommentN = async e => {
 		e.preventDefault()
@@ -24,19 +21,16 @@ const CommentForm = props => {
 		<div>
 			<Form onSubmit={addCommentN}>
 				<div>
-					<label className='sr-only'>Content</label>
+					<label className="sr-only">Content</label>
 					<textarea
-						className=' mb-1 card text-primary'
-						rows='3'
-						placeholder='content'
-						name='content'
+						className=" mb-1 card text-primary"
+						rows="3"
+						placeholder="content"
+						name="content"
 						style={epicStyling}
 					/>
 				</div>
-				<button
-					className='btn btn-primary justify-content-end btn-space-top'
-					type='submit'
-				>
+				<button className="btn btn-primary justify-content-end btn-space-top" type="submit">
 					Comment
 				</button>
 			</Form>
@@ -55,8 +49,5 @@ const mapStateToProps = state => {
 	}
 }
 const mapDispatchToProps = { addComment }
-const ConnectedComments = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(CommentForm)
+const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(CommentForm)
 export default ConnectedComments

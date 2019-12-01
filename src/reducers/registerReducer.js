@@ -3,7 +3,6 @@ import registerService from '../services/register'
 export const createUser = a => {
 	return async dispatch => {
 		const newUser = await registerService.register(a)
-
 		dispatch({
 			type: 'NEW_USER',
 			data: newUser

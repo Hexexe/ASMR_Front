@@ -60,29 +60,16 @@ const App = props => {
 	return (
 		<div>
 			{user === null ? (
-				<LoginForm
-					handleLogin={handleLogin}
-					username={username}
-					password={password}
-				/>
+				<LoginForm handleLogin={handleLogin} username={username} password={password} />
 			) : (
-				<LogoutForm user={user} logout={logout}></LogoutForm>
+				<LogoutForm user={user} logout={logout} />
 			)}
 			<br></br>
 			<br></br>
-			<img
-				src={require('./images/logo.png')}
-				className=''
-				alt='kuva'
-				width='100%'
-			></img>
-			<div className='mx-auto'>
+			<img src={require('./images/logo.png')} className="" alt="kuva" width="100%"></img>
+			<div className="mx-auto">
 				{user === null ? (
-					<LoginForm
-						handleLogin={handleLogin}
-						username={username}
-						password={password}
-					/>
+					<LoginForm handleLogin={handleLogin} username={username} password={password} />
 				) : (
 					<>
 						<PostForm />
@@ -91,7 +78,7 @@ const App = props => {
 				<h1>Posts</h1>
 			</div>
 			<PostList />
-			<div className='row justify-content-center'></div>
+			<div className="row justify-content-center"></div>
 			<Footer />
 		</div>
 	)
