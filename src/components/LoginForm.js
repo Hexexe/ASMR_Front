@@ -45,11 +45,10 @@ const LoginForm = ({ handleLogin, username, password }) => (
 									login
 								</button>
 							</div>
-							<div className='col'>
-								<RegisterForm />
-							</div>
+							<div className='col'></div>
 						</div>
 					</form>
+					<RegisterForm />
 				</div>
 			</div>
 		</div>
