@@ -11,6 +11,7 @@ const epicStyling = {
 
 const PostList = props => {
 	const posts = props.posts
+
 	return (
 		<div>
 			{posts.map(post => (
@@ -30,9 +31,13 @@ const PostList = props => {
 						<h2 className='mt-0'>{post.title}</h2>
 						<p className=''>{post.content}</p>
 						<CommentList id={post.id} />
-						<Togglable buttonLabel='Comment' ref={postFormRef}>
-							<CommentForm id={post.id} />
-						</Togglable>
+						{props.user !== null ? (
+							<Togglable buttonLabel='Comment' ref={postFormRef}>
+								<CommentForm id={post.id} />
+							</Togglable>
+						) : (
+							console.log('näin päästiin errorista eroon')
+						)}
 					</div>
 				</div>
 			))}

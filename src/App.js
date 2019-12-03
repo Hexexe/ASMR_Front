@@ -90,7 +90,7 @@ const App = props => {
 				)}
 				<h1>Posts</h1>
 			</div>
-			<PostList />
+			<PostList user={user} />
 			<div className='row justify-content-center'></div>
 			<Footer />
 		</div>
