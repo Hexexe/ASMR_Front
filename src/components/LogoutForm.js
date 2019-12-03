@@ -6,7 +6,7 @@ const LogoutForm = ({ user, logout }) => (
 			<div className="collapse navbar-collapse"></div>
 
 			<p className="mb-2">
-				<b>{user.name} </b>logged in{' '}
+				<b>{user.username} </b>logged in{' '}
 			</p>
 			<button onClick={logout} className="btn btn-danger mb-2 btn-space-left">
 				logout

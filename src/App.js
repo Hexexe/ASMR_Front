@@ -21,7 +21,7 @@ const App = props => {
 	useEffect(() => {
 		props.initializePosts()
 		props.initializeComments()
-	}, [props])
+	}, [props, user])
 
 	useEffect(() => {
 		const loggedUserJSON = window.localStorage.getItem('currentUser')
