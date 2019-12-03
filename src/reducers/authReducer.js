@@ -1,4 +1,4 @@
-import postService from '../services/posts'
+//import postService from '../services/posts'
 
 const initialState = {
 	token: localStorage.getItem('currentUser'),

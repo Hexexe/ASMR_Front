@@ -16,7 +16,7 @@ const App = props => {
 	const [user, setUser] = useState(null)
 	const username = useField('text')
 	const password = useField('password')
-	const postFormRef = React.createRef()
+	//const postFormRef = React.createRef()
 
 	useEffect(() => {
 		props.initializePosts()
@@ -60,29 +60,16 @@ const App = props => {
 	return (
 		<div>
 			{user === null ? (
-				<LoginForm
-					handleLogin={handleLogin}
-					username={username}
-					password={password}
-				/>
+				<LoginForm handleLogin={handleLogin} username={username} password={password} />
 			) : (
 				<LogoutForm user={user} logout={logout}></LogoutForm>
 			)}
 			<br></br>
 			<br></br>
-			<img
-				src={require('./images/logo.png')}
-				className=''
-				alt='kuva'
-				width='100%'
-			></img>
-			<div className='mx-auto'>
+			<img src={require('./images/logo.png')} className="" alt="kuva" width="100%"></img>
+			<div className="mx-auto">
 				{user === null ? (
-					<LoginForm
-						handleLogin={handleLogin}
-						username={username}
-						password={password}
-					/>
+					<LoginForm handleLogin={handleLogin} username={username} password={password} />
 				) : (
 					<>
 						<PostForm />
@@ -91,7 +78,7 @@ const App = props => {
 				<h1>Posts</h1>
 			</div>
 			<PostList user={user} />
-			<div className='row justify-content-center'></div>
+			<div className="row justify-content-center"></div>
 			<Footer />
 		</div>
 	)

@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const postFormRef = React.createRef()
+/* const postFormRef = React.createRef()
 const epicStyling = {
 	width: '45rem'
-}
+} */
 
 const CommentList = props => {
 	const comments = props.comments
@@ -17,9 +17,9 @@ const CommentList = props => {
 				.sort()
 				.reverse()
 				.map(comment => (
-					<div className='card mb-1 text-muted mt-3' key={comment.id}>
+					<div className="card mb-1 text-muted mt-3" key={comment.id}>
 						<h5>{props.id}</h5>
-						<p className='card-body'>{comment.content}</p>
+						<p className="card-body">{comment.content}</p>
 					</div>
 				))}
 		</div>
