@@ -21,16 +21,16 @@ const CommentForm = props => {
 		<div>
 			<Form onSubmit={addCommentN}>
 				<div>
-					<label className="sr-only">Content</label>
+					<label className='sr-only'>Content</label>
 					<textarea
-						className=" mb-1 card text-primary"
-						rows="3"
-						placeholder="content"
-						name="content"
+						className=' mb-1 card text-primary'
+						rows='3'
+						placeholder='content'
+						name='content'
 						style={epicStyling}
 					/>
 				</div>
-				<button className="btn btn-primary justify-content-end btn-space-top" type="submit">
+				<button className='btn btn-primary justify-content-end btn-space-top' type='submit'>
 					Comment
 				</button>
 			</Form>
