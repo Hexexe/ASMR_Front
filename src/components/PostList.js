@@ -30,15 +30,31 @@ const PostList = props => {
 								></img>
 								<h2 className='media-heading'>{props.user.username}</h2>
 								<br></br>
-								<p className='horizontalLine'>{post.content}</p>
+								<p className='horizontalLine mb-1'>{post.content}</p>
 								<div className='listStyling'>
 									<ul className='listStyling'>
-										<li>{post.date}</li>
-										<li>asd</li>
-										<li>asd</li>
+										<li>
+											{' '}
+											<a className='listStyling'>{post.date}</a>
+										</li>
+										<li className=''>
+											<a className='listStyling '>
+												<img
+													src={require('../images/ok_sign.jpg')}
+													className=' imageToLeft '
+													alt='kuva'
+													width='32'
+													height='32'
+												></img>
+											</a>
+										</li>
+
+										<li className=''>
+											<a className='listStyling'>asd</a>
+										</li>
 									</ul>
 								</div>
-								<p className='horizontalLine'></p>
+								<p className='horizontalLine pb-1'></p>
 								<CommentList id={post.id} />
 								{props.user !== null ? (
 									<Togglable buttonLabel='Comment' ref={postFormRef}>

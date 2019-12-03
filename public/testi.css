@@ -15,6 +15,7 @@ h1 {
 .horizontalLine {
 	padding-bottom: 20px;
 	border-bottom: 1px solid #ccc;
+	padding-top: 0;
 }
 
 .imageToLeft {
@@ -25,14 +26,19 @@ h1 {
 
 .listStyling ul {
 	list-style-type: none;
-	background-color: #aae1e6;
-	padding: 25px 25px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	font-size: 21px;
+	font-family: Garamond, serif;
 }
-
 .listStyling li {
 	float: left;
-	display: inline-block;
+}
+
+.listStyling li a {
 	color: black;
-	text-decoration: none;
+	text-align: center;
 	padding-right: 10px;
+	text-decoration: none;
 }
