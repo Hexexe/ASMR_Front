@@ -11,36 +11,46 @@ const epicStyling = {
 
 const PostList = props => {
 	const posts = props.posts
-
+	console.log(props)
 	return (
-		<div>
-			{posts.map(post => (
-				<div
-					className='media text-white bg-dark mb-3 mx-auto '
-					style={epicStyling}
-					key={post.id}
-				>
-					<img
-						src={require('../images/testi.png')}
-						className='mr-3 fluid'
-						alt='kuva'
-						width='64'
-						height='64'
-					></img>
-					<div className='media-body'>
-						<h2 className='mt-0'>{post.title}</h2>
-						<p className=''>{post.content}</p>
-						<CommentList id={post.id} />
-						{props.user !== null ? (
-							<Togglable buttonLabel='Comment' ref={postFormRef}>
-								<CommentForm id={post.id} />
-							</Togglable>
-						) : (
-							console.log('näin päästiin errorista eroon')
-						)}
-					</div>
-				</div>
-			))}
+		<div className='container' style={epicStyling}>
+			<div className='well'>
+				{posts
+					.sort()
+					.reverse()
+					.map(post => (
+						<div className='media bg-dark mb-3' key={post.id}>
+							<div className='media-body card-body inline'>
+								<img
+									src={require('../images/apache.png')}
+									className='media-object imageToLeft'
+									alt='kuva'
+									width='64'
+									height='64'
+								></img>
+								<h2 className='media-heading'>{props.user.username}</h2>
+								<br></br>
+								<p className='horizontalLine'>{post.content}</p>
+								<div className='listStyling'>
+									<ul className='listStyling'>
+										<li>{post.date}</li>
+										<li>asd</li>
+										<li>asd</li>
+									</ul>
+								</div>
+								<p className='horizontalLine'></p>
+								<CommentList id={post.id} />
+								{props.user !== null ? (
+									<Togglable buttonLabel='Comment' ref={postFormRef}>
+										<CommentForm id={post.id} />
+									</Togglable>
+								) : (
+									console.log('näin päästiin errorista eroon')
+								)}
+							</div>
+						</div>
+					))}
+			</div>
 		</div>
 	)
 }
