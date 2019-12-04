@@ -10,7 +10,7 @@ import {
 	Label,
 	Input
 } from 'reactstrap'
-import { createUser } from '../reducers/registerReducer'
+import { createUser } from '../reducers/userReducer'
 import { connect } from 'react-redux'
 
 const RegisterForm = props => {
@@ -29,35 +29,40 @@ const RegisterForm = props => {
 
 	return (
 		<div>
-			<Button color='primary' onClick={toggle}>
+			<Button color="primary" onClick={toggle}>
 				Register
 			</Button>
 			<Modal isOpen={modal} toggle={toggle} className={className}>
-				<ModalHeader className='text-muted' toggle={toggle}>
+				<ModalHeader className="text-muted" toggle={toggle}>
 					Register
 				</ModalHeader>
-				<ModalBody className='text-muted'>
+				<ModalBody className="text-muted">
 					<Form onSubmit={createUserN}>
 						<FormGroup>
-							<Label for='exampleEmail'>
+							<Label for="exampleEmail">
 								<b>Username</b>
 							</Label>
-							<Input type='username' name='username' id='exampleEmail' placeholder='matti8' />
-						</FormGroup>
-						<FormGroup>
-							<Label for='examplePassword'>
-								<b>Password</b>
-							</Label>
 							<Input
-								type='password'
-								name='password'
-								id='examplePassword'
-								placeholder='very secure password'
+								type="username"
+								name="username"
+								id="exampleEmail"
+								placeholder="matti8"
 							/>
 						</FormGroup>
 						<FormGroup>
-							<Label for='exampleSelect'>Gender</Label>
-							<Input type='select' name='select' id='exampleSelect'>
+							<Label for="examplePassword">
+								<b>Password</b>
+							</Label>
+							<Input
+								type="password"
+								name="password"
+								id="examplePassword"
+								placeholder="very secure password"
+							/>
+						</FormGroup>
+						<FormGroup>
+							<Label for="exampleSelect">Gender</Label>
+							<Input type="select" name="select" id="exampleSelect">
 								<option>Male</option>
 								<option>Female</option>
 								<option>Apache</option>
@@ -65,16 +70,16 @@ const RegisterForm = props => {
 						</FormGroup>
 						<FormGroup check>
 							<Label check>
-								<Input type='checkbox' /> I agree to the terms of service
+								<Input type="checkbox" /> I agree to the terms of service
 							</Label>
 						</FormGroup>
-						<Button color='primary' type='submit' onClick={toggle}>
+						<Button color="primary" type="submit" onClick={toggle}>
 							Register
 						</Button>{' '}
 					</Form>
 				</ModalBody>
 				<ModalFooter>
-					<Button color='secondary' onClick={toggle}>
+					<Button color="secondary" onClick={toggle}>
 						Cancel
 					</Button>
 				</ModalFooter>

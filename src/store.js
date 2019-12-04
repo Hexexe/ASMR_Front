@@ -4,13 +4,13 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import postReducer from './reducers/postReducer'
 import authReducer from './reducers/authReducer'
 import commentReducer from './reducers/commentReducer'
-import registerReducer from './reducers/registerReducer'
+import userReducer from './reducers/userReducer'
 
 const reducer = combineReducers({
 	posts: postReducer,
 	auth: authReducer,
 	comments: commentReducer,
-	register: registerReducer
+	users: userReducer
 })
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))
 

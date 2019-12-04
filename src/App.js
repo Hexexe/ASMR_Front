@@ -3,12 +3,13 @@ import { useField } from './hooks'
 import { connect } from 'react-redux'
 import { initializePosts } from './reducers/postReducer'
 import { initializeComments } from './reducers/commentReducer'
+import { initializeUsers } from './reducers/userReducer'
 import PostList from './components/PostList'
 import PostForm from './components/PostForm'
 import LoginForm from './components/LoginForm'
 import postService from './services/posts'
 import commentService from './services/comments'
-import loginService from './services/login'
+import loginService from './services/users'
 import Footer from './components/Footer'
 import LogoutForm from './components/LogoutForm'
 
@@ -21,6 +22,7 @@ const App = props => {
 	useEffect(() => {
 		props.initializePosts()
 		props.initializeComments()
+		props.initializeUsers()
 	}, [props, user])
 
 	useEffect(() => {
@@ -60,16 +62,29 @@ const App = props => {
 	return (
 		<div>
 			{user === null ? (
-				<LoginForm handleLogin={handleLogin} username={username} password={password} />
+				<LoginForm
+					handleLogin={handleLogin}
+					username={username}
+					password={password}
+				/>
 			) : (
 				<LogoutForm user={user} logout={logout}></LogoutForm>
 			)}
 			<br></br>
 			<br></br>
-			<img src={require('./images/logo.png')} className='' alt='kuva' width='100%'></img>
-			<div className='mx-auto'>
+			<img
+				src={require('./images/logo.png')}
+				className=""
+				alt="kuva"
+				width="100%"
+			></img>
+			<div className="mx-auto">
 				{user === null ? (
-					<LoginForm handleLogin={handleLogin} username={username} password={password} />
+					<LoginForm
+						handleLogin={handleLogin}
+						username={username}
+						password={password}
+					/>
 				) : (
 					<>
 						<PostForm />
@@ -78,9 +93,13 @@ const App = props => {
 				<h1>Posts</h1>
 			</div>
 			<PostList user={user} />
-			<div className='row justify-content-center'></div>
+			<div className="row justify-content-center"></div>
 			<Footer />
 		</div>
 	)
 }
-export default connect(null, { initializePosts, initializeComments })(App)
+export default connect(null, {
+	initializePosts,
+	initializeComments,
+	initializeUsers
+})(App)
