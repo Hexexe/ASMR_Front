@@ -23,7 +23,7 @@ const App = props => {
 		props.initializeUsers()
 		props.initializePosts()
 		props.initializeComments()
-	}, [props, user])
+	}, [props.posts.length, user])
 
 	useEffect(() => {
 		const loggedUserJSON = window.localStorage.getItem('currentUser')
@@ -85,8 +85,8 @@ const App = props => {
 		</div>
 	)
 }
-export default connect(null, {
-	initializePosts,
-	initializeComments,
-	initializeUsers
-})(App)
+const mapStateToProps = state => ({
+	posts: state.posts
+})
+const mapDispatchToProps = { initializeComments, initializePosts, initializeUsers }
+export default connect(mapStateToProps, mapDispatchToProps)(App)
