@@ -21,9 +21,12 @@ export const initializePosts = () => {
 const postReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'NEW_POST':
-			return state.concat(action.data)
+			return state
+				.concat(action.data)
+				.sort()
+				.reverse()
 		case 'INIT_POSTS':
-			return action.data
+			return action.data.sort().reverse()
 		default:
 			return state
 	}
