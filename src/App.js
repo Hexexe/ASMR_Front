@@ -23,9 +23,6 @@ const App = props => {
 		props.initializeUsers()
 		props.initializePosts()
 		props.initializeComments()
-	}, [props.posts.length, user])
-
-	useEffect(() => {
 		const loggedUserJSON = window.localStorage.getItem('currentUser')
 		if (loggedUserJSON) {
 			const user = JSON.parse(loggedUserJSON)
@@ -33,7 +30,7 @@ const App = props => {
 			postService.setToken(user.token)
 			commentService.setToken(user.token)
 		}
-	}, [])
+	}, [props.posts.length])
 
 	const handleLogin = async event => {
 		event.preventDefault()
@@ -86,7 +83,8 @@ const App = props => {
 	)
 }
 const mapStateToProps = state => ({
-	posts: state.posts
+	posts: state.posts,
+	comments: state.comments
 })
 const mapDispatchToProps = { initializeComments, initializePosts, initializeUsers }
 export default connect(mapStateToProps, mapDispatchToProps)(App)
