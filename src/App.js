@@ -57,18 +57,31 @@ const App = props => {
 
 	//yaysdfsdf
 	return (
-		<div>
+		<div className='textcolor'>
 			{user === null ? (
-				<LoginForm handleLogin={handleLogin} username={username} password={password} />
+				<LoginForm
+					handleLogin={handleLogin}
+					username={username}
+					password={password}
+				/>
 			) : (
 				<LogoutForm user={user} logout={logout}></LogoutForm>
 			)}
 			<br></br>
 			<br></br>
-			<img src={require('./images/logo.png')} className='' alt='kuva' width='100%'></img>
+			<img
+				src={require('./images/logo.png')}
+				className=''
+				alt='kuva'
+				width='100%'
+			></img>
 			<div className='mx-auto'>
 				{user === null ? (
-					<LoginForm handleLogin={handleLogin} username={username} password={password} />
+					<LoginForm
+						handleLogin={handleLogin}
+						username={username}
+						password={password}
+					/>
 				) : (
 					<>
 						<PostForm />
@@ -86,5 +99,9 @@ const mapStateToProps = state => ({
 	posts: state.posts,
 	comments: state.comments
 })
-const mapDispatchToProps = { initializeComments, initializePosts, initializeUsers }
+const mapDispatchToProps = {
+	initializeComments,
+	initializePosts,
+	initializeUsers
+}
 export default connect(mapStateToProps, mapDispatchToProps)(App)

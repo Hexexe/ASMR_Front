@@ -17,7 +17,7 @@ const CommentList = props => {
 				.sort()
 				.reverse()
 				.map(comment => (
-					<div className='card mb-1 text-muted mt-3' key={comment.id}>
+					<div className='card mb-1 mt-3 background' key={comment.id}>
 						<h5>{props.id}</h5>
 						<p className='card-body'>{comment.content}</p>
 					</div>

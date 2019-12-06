@@ -8,6 +8,9 @@ const postFormRef = React.createRef()
 const epicStyling = {
 	width: '55rem'
 }
+const lmao = {
+	float: 'left'
+}
 
 const PostList = props => {
 	const posts = props.posts
@@ -16,11 +19,17 @@ const PostList = props => {
 		const user = users.find(user => user.posts.find(post => post.id === postid))
 		return user === undefined ? null : user.username
 	}
+
+	let number = 0
+	const okCounter = () => {
+		console.log('click')
+		return number + 1
+	}
 	return (
-		<div className='container' style={epicStyling}>
+		<div className='container textcolor' style={epicStyling}>
 			<div className='well'>
 				{posts.map(post => (
-					<div className='media bg-dark mb-3' key={post.id}>
+					<div className='media surface mb-3 jumbotron' key={post.id}>
 						<div className='media-body card-body inline'>
 							<img
 								src={require('../images/apache.png')}
@@ -31,34 +40,29 @@ const PostList = props => {
 							></img>
 							<h2 className='media-heading'>{usernamelol(users, post.id)}</h2>
 							<br></br>
-							<p className='horizontalLine mb-1'>{post.content}</p>
-							<div className='listStyling'>
-								<ul className='listStyling'>
+							<p className='horizontalLine mb-1 '>{post.content}</p>
+							<div className='listStyling '>
+								<ul className=''>
+									<li>{post.date}</li>
+									{number}
+									<li className=''>
+										<img
+											src={require('../images/ok_sign2.png')}
+											className='imagetoRight'
+											alt='kuva'
+											width='32'
+											height='32'
+											onClick={okCounter}
+										></img>
+									</li>
 									<li>
-										{' '}
-										<a className='listStyling'>{post.date}</a>
-									</li>
-									<li className=''>
-										<a className='listStyling '>
-											<img
-												src={require('../images/Wp2.png')}
-												className=' imageToLeft '
-												alt='kuva'
-												width='32'
-												height='32'
-											></img>
-										</a>
-									</li>
-									<li className=''>
-										<a className='listStyling '>
-											<img
-												src={require('../images/exit.png')}
-												className=' imageToLeft '
-												alt='kuva'
-												width='32'
-												height='32'
-											></img>
-										</a>
+										<img
+											src={require('../images/exit_sign2.png')}
+											className=' imagetoRight '
+											alt='kuva'
+											width='32'
+											height='32'
+										></img>
 									</li>
 								</ul>
 							</div>

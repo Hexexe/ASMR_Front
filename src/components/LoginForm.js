@@ -9,7 +9,7 @@ const purgeReset = p => {
 }
 
 const LoginForm = ({ handleLogin, username, password }) => (
-	<nav className='navbar fixed-top navbar-expand-md navbar-dark bg-dark'>
+	<nav className='navbar fixed-top navbar-expand-md surface'>
 		<button
 			className='navbar-toggler navbar-toggler-right'
 			type='button'
@@ -41,7 +41,7 @@ const LoginForm = ({ handleLogin, username, password }) => (
 								/>
 							</div>
 							<div className='col'>
-								<button type='submit' className='btn btn-primary'>
+								<button type='submit' className='btn primary'>
 									login
 								</button>
 							</div>

@@ -29,40 +29,44 @@ const RegisterForm = props => {
 
 	return (
 		<div>
-			<Button color="primary" onClick={toggle}>
+			<Button className='primary text-dark' onClick={toggle}>
 				Register
 			</Button>
-			<Modal isOpen={modal} toggle={toggle} className={className}>
-				<ModalHeader className="text-muted" toggle={toggle}>
-					Register
-				</ModalHeader>
-				<ModalBody className="text-muted">
-					<Form onSubmit={createUserN}>
+			<Modal
+				isOpen={modal}
+				toggle={toggle}
+				className='surface textcolor border-dark'
+			>
+				<ModalBody className='surface'>
+					<Form onSubmit={createUserN} className='surface border-dark'>
 						<FormGroup>
-							<Label for="exampleEmail">
-								<b>Username</b>
-							</Label>
+							<Label for='exampleEmail'>Username</Label>
 							<Input
-								type="username"
-								name="username"
-								id="exampleEmail"
-								placeholder="matti8"
+								type='username'
+								name='username'
+								id='exampleEmail'
+								placeholder='matti8'
+								className='background border-dark'
 							/>
 						</FormGroup>
 						<FormGroup>
-							<Label for="examplePassword">
-								<b>Password</b>
-							</Label>
+							<Label for='examplePassword'>Password</Label>
 							<Input
-								type="password"
-								name="password"
-								id="examplePassword"
-								placeholder="very secure password"
+								type='password'
+								name='password'
+								id='examplePassword'
+								placeholder='very secure password'
+								className='background border-dark'
 							/>
 						</FormGroup>
 						<FormGroup>
-							<Label for="exampleSelect">Gender</Label>
-							<Input type="select" name="select" id="exampleSelect">
+							<Label for='exampleSelect'>Gender</Label>
+							<Input
+								type='select'
+								name='select'
+								id='exampleSelect'
+								className='background border-dark'
+							>
 								<option>Male</option>
 								<option>Female</option>
 								<option>Apache</option>
@@ -70,19 +74,18 @@ const RegisterForm = props => {
 						</FormGroup>
 						<FormGroup check>
 							<Label check>
-								<Input type="checkbox" /> I agree to the terms of service
+								<Input type='checkbox' className='background border-dark' /> I
+								agree to the terms of service
 							</Label>
 						</FormGroup>
-						<Button color="primary" type="submit" onClick={toggle}>
+						<Button className='primary' type='submit' onClick={toggle}>
 							Register
 						</Button>{' '}
+						<Button className='secondary' onClick={toggle}>
+							Cancel
+						</Button>
 					</Form>
 				</ModalBody>
-				<ModalFooter>
-					<Button color="secondary" onClick={toggle}>
-						Cancel
-					</Button>
-				</ModalFooter>
 			</Modal>
 		</div>
 	)

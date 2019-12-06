@@ -2,12 +2,12 @@ import React from 'react'
 //import PropTypes from 'prop-types'
 import { addComment } from '../reducers/commentReducer'
 import { connect } from 'react-redux'
-import { Col, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Form } from 'reactstrap'
 //sdf
 
 const CommentForm = props => {
 	const epicStyling = {
-		width: '45rem'
+		width: '100%'
 	}
 	const id = props.id
 	const addCommentN = async e => {
@@ -23,14 +23,17 @@ const CommentForm = props => {
 				<div>
 					<label className='sr-only'>Content</label>
 					<textarea
-						className=' mb-1 card text-primary'
+						className='card background textcolor border-dark'
 						rows='3'
 						placeholder='content'
 						name='content'
 						style={epicStyling}
 					/>
 				</div>
-				<button className='btn btn-primary justify-content-end btn-space-top' type='submit'>
+				<button
+					className='btn primary justify-content-end btn-space-top'
+					type='submit'
+				>
 					Comment
 				</button>
 			</Form>
@@ -49,5 +52,8 @@ const mapStateToProps = state => {
 	}
 }
 const mapDispatchToProps = { addComment }
-const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(CommentForm)
+const ConnectedComments = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(CommentForm)
 export default ConnectedComments

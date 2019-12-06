@@ -24,11 +24,17 @@ h1 {
 	margin-right: 15px;
 }
 
+.imagetoRight {
+	float: right;
+	border-radius: 50%;
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
 .listStyling ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
 	font-size: 21px;
 	font-family: Garamond, serif;
 }
@@ -37,8 +43,53 @@ h1 {
 }
 
 .listStyling li a {
-	color: black;
+	color: white;
 	text-align: center;
 	padding-right: 10px;
 	text-decoration: none;
+}
+
+.epic ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	font-size: 21px;
+	font-family: Garamond, serif;
+}
+
+.epic li {
+	color: white;
+	text-align: center;
+	padding-right: 10px;
+	text-decoration: none;
+}
+
+.surface {
+	background-color: #1f1f1f;
+}
+
+.background {
+	background-color: #101010;
+}
+
+.primary {
+	background-color: #03dac6;
+}
+
+.secondary {
+	background-color: #bb86fc;
+}
+
+.textcolor {
+	color: white;
+}
+
+.jumbotron {
+	padding: 1px;
+}
+
+.form-control:focus {
+	border-color: #bb86fc;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+		0 0 8px rgba(255, 255, 255, 0.6);
 }
