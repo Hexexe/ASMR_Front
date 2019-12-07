@@ -1,6 +1,7 @@
 import postService from '../services/posts'
 
 export const addPost = a => {
+	console.log(a)
 	return async dispatch => {
 		const newPost = await postService.create(a)
 		dispatch({

@@ -5,6 +5,7 @@ import CommentList from './CommentList'
 import { connect } from 'react-redux'
 
 const postFormRef = React.createRef()
+const url = 'http://localhost:3001/api/uploads/'
 const epicStyling = {
 	width: '55rem'
 }
@@ -40,7 +41,15 @@ const PostList = props => {
 							></img>
 							<h2 className='media-heading'>{usernamelol(users, post.id)}</h2>
 							<br></br>
-							<p className='horizontalLine mb-1 '>{post.content}</p>
+							<p>{post.content}</p>
+							{post.postImg === null ? null : (
+								<img
+									className='horizontalLine mb-1'
+									src={url + post.postImg}
+									width='400'
+									height='400'
+								/>
+							)}
 							<div className='listStyling '>
 								<ul className=''>
 									<li>{post.date}</li>
