@@ -7,26 +7,15 @@ const PostForm = props => {
 	const addPostN = async e => {
 		e.preventDefault()
 		const formData = new FormData()
-		formData.append('title', e.target.title.value)
 		formData.append('content', e.target.content.value)
 		formData.append('postImg', e.target.file.files[0])
 		props.addPost(formData)
-		e.target.title.value = ''
 		e.target.content.value = ''
 	}
 	return (
 		<div className='col-xl-6 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4'>
 			<h2>Kvaak</h2>
-			<form onSubmit={addPostN} className='justify-content-center'>
-				<div className='form-group '>
-					<label className='sr-only'>Title</label>
-					<input
-						className='form-control col-form-label-lg surface border-dark'
-						placeholder='title'
-						name='title'
-						type='text'
-					/>
-				</div>
+			<form onSubmit={addPostN} className='justify-content-center' encType='multipart/form-data'>
 				<div>
 					<label className='sr-only'>Content</label>
 					<textarea
