@@ -3,6 +3,7 @@ import Togglable from './Togglable'
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
+import { like, dislike } from '../reducers/postReducer'
 
 const postFormRef = React.createRef()
 const url = 'http://localhost:3001/api/uploads/'
@@ -19,12 +20,6 @@ const PostList = props => {
 	const usernamelol = (users, postid) => {
 		const user = users.find(user => user.posts.find(post => post.id === postid))
 		return user === undefined ? null : user.username
-	}
-
-	let number = 0
-	const okCounter = () => {
-		console.log('click')
-		return number + 1
 	}
 	return (
 		<div className='container textcolor' style={epicStyling}>
@@ -53,7 +48,6 @@ const PostList = props => {
 							<div className='listStyling '>
 								<ul className=''>
 									<li>{post.date}</li>
-									{number}
 									<li className=''>
 										<img
 											src={require('../images/ok_sign2.png')}
@@ -61,8 +55,9 @@ const PostList = props => {
 											alt='kuva'
 											width='32'
 											height='32'
-											onClick={okCounter}
-										></img>
+											onClick={() => props.like(post)}
+										/>
+										{post.wp}
 									</li>
 									<li>
 										<img
@@ -71,7 +66,9 @@ const PostList = props => {
 											alt='kuva'
 											width='32'
 											height='32'
-										></img>
+											onClick={() => props.dislike(post)}
+										/>
+										{post.gtfo}
 									</li>
 								</ul>
 							</div>
@@ -97,6 +94,6 @@ const mapStateToProps = state => {
 		users: state.users
 	}
 }
-//const mapDispatchToProps = { setNotification, vote }
-const ConnectedPosts = connect(mapStateToProps)(PostList)
+const mapDispatchToProps = { like, dislike }
+const ConnectedPosts = connect(mapStateToProps, mapDispatchToProps)(PostList)
 export default ConnectedPosts

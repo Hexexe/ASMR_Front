@@ -10,6 +10,25 @@ export const addPost = a => {
 		})
 	}
 }
+export const like = a => {
+	return async dispatch => {
+		const liked = await postService.update({ ...a, wp: a.wp + 1 })
+		dispatch({
+			type: 'LIKE',
+			data: liked
+		})
+	}
+}
+export const dislike = a => {
+	return async dispatch => {
+		const disliked = await postService.update({ ...a, gtfo: a.gtfo + 1 })
+		dispatch({
+			type: 'DISLIKE',
+			data: disliked
+		})
+	}
+}
+
 export const initializePosts = () => {
 	return async dispatch => {
 		const posts = await postService.getAll()
@@ -21,13 +40,27 @@ export const initializePosts = () => {
 }
 const postReducer = (state = [], action) => {
 	switch (action.type) {
-		case 'NEW_POST':
+		case 'NEW_POST': {
 			return state
 				.concat(action.data)
 				.sort()
 				.reverse()
-		case 'INIT_POSTS':
+		}
+		case 'INIT_POSTS': {
 			return action.data.sort().reverse()
+		}
+		case 'LIKE': {
+			const id = action.data.id
+			const likedPost = state.find(n => n.id === id)
+			const liked = { ...likedPost, wp: likedPost.wp + 1 }
+			return state.map(p => (p.id !== id ? p : liked))
+		}
+		case 'DISLIKE': {
+			const id = action.data.id
+			const dislikedPost = state.find(n => n.id === id)
+			const disliked = { ...dislikedPost, gtfo: dislikedPost.gtfo + 1 }
+			return state.map(p => (p.id !== id ? p : disliked))
+		}
 		default:
 			return state
 	}

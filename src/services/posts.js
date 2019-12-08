@@ -20,8 +20,9 @@ const remove = async id => {
 	const promise = await axios.delete(`${baseUrl}/${id}`)
 	return promise.then(response => response.data)
 }
-const replace = async person => {
-	const promise = await axios.put(`${baseUrl}/${person.id}`, person)
-	return promise.then(response => response.data)
+const update = async post => {
+	const config = { headers: { Authorization: token } }
+	const response = await axios.put(`${baseUrl}/${post.id}`, post, config)
+	return response.data
 }
-export default { getAll, create, remove, replace, setToken }
+export default { getAll, create, remove, update, setToken }
