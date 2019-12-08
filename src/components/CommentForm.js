@@ -12,7 +12,6 @@ const CommentForm = props => {
 	const id = props.id
 	const addCommentN = async e => {
 		e.preventDefault()
-		console.log(id)
 		const formData = new FormData()
 		formData.append('content', e.target.content.value)
 		formData.append('postImg', e.target.file.files[0])

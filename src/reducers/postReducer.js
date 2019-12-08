@@ -1,7 +1,6 @@
 import postService from '../services/posts'
 
 export const addPost = a => {
-	console.log(a)
 	return async dispatch => {
 		const newPost = await postService.create(a)
 		dispatch({
@@ -58,8 +57,9 @@ const postReducer = (state = [], action) => {
 			const disliked = { ...dislikedPost, gtfo: dislikedPost.gtfo + 1 }
 			return state.map(p => (p.id !== id ? p : disliked))
 		}
-		default:
+		default: {
 			return state
+		}
 	}
 }
 

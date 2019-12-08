@@ -20,12 +20,15 @@ export const initializeComments = () => {
 }
 const commentReducer = (state = [], action) => {
 	switch (action.type) {
-		case 'NEW_COMMENT':
+		case 'NEW_COMMENT': {
 			return state.concat(action.data)
-		case 'INIT_COMMENTS':
+		}
+		case 'INIT_COMMENTS': {
 			return action.data
-		default:
+		}
+		default: {
 			return state
+		}
 	}
 }
 

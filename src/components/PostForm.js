@@ -49,6 +49,11 @@ const PostForm = props => {
 	titleS: PropTypes.object.isRequired,
 	contentS: PropTypes.object.isRequired
 } */
+const mapStateToProps = state => {
+	return {
+		posts: state.posts
+	}
+}
 const mapDispatchToProps = { addPost }
-const ConnectedPosts = connect(null, mapDispatchToProps)(PostForm)
+const ConnectedPosts = connect(mapStateToProps, mapDispatchToProps)(PostForm)
 export default ConnectedPosts

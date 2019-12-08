@@ -19,7 +19,7 @@ const PostList = props => {
 	const users = props.users
 	const usernamelol = (users, postid) => {
 		const user = users.find(user => user.posts.find(post => post.id === postid))
-		return user === undefined ? null : user.username
+		return user === undefined ? 'Too Slow' : user.username
 	}
 	return (
 		<div className='container textcolor' style={epicStyling}>
@@ -33,7 +33,7 @@ const PostList = props => {
 								alt='kuva'
 								width='64'
 								height='64'
-							></img>
+							/>
 							<h2 className='media-heading'>{usernamelol(users, post.id)}</h2>
 							<br></br>
 							<p>{post.content}</p>
@@ -74,12 +74,12 @@ const PostList = props => {
 							</div>
 							<p className='horizontalLine pb-1'></p>
 							<CommentList id={post.id} />
-							{props.user !== null ? (
+							{props.user === null ? (
+								''
+							) : (
 								<Togglable buttonLabel='Comment' ref={postFormRef}>
 									<CommentForm id={post.id} />
 								</Togglable>
-							) : (
-								console.log('näin päästiin errorista eroon')
 							)}
 						</div>
 					</div>
