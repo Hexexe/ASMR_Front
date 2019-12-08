@@ -10,6 +10,7 @@ import {
 } from 'reactstrap'
 import { createUser } from '../reducers/userReducer'
 import { connect } from 'react-redux'
+import useForm from 'react-hook-form'
 
 const RegisterForm = props => {
 	const createUserN = async e => {
@@ -21,8 +22,19 @@ const RegisterForm = props => {
 		props.createUser({ username, password })
 	}
 
+	const createUser2 = async data => {
+		const username = data.username
+		const password = data.password
+		props.createUser({ username, password })
+	}
+
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
+	const { register, handleSubmit, watch, errors } = useForm()
+
+	const onSubmit = data => {
+		createUser2(data)
+	}
 
 	return (
 		<div>
@@ -35,53 +47,71 @@ const RegisterForm = props => {
 				className='surface textcolor border-dark'
 			>
 				<ModalBody className='surface'>
-					<Form onSubmit={createUserN} className='surface border-dark'>
-						<FormGroup>
-							<Label for='exampleEmail'>Username</Label>
-							<Input
-								type='username'
-								name='username'
-								id='exampleEmail'
-								placeholder='matti8'
-								className='background border-dark'
-							/>
-						</FormGroup>
-						<FormGroup>
-							<Label for='examplePassword'>Password</Label>
-							<Input
-								type='password'
-								name='password'
-								id='examplePassword'
-								placeholder='very secure password'
-								className='background border-dark'
-							/>
-						</FormGroup>
-						<FormGroup>
-							<Label for='exampleSelect'>Gender</Label>
-							<Input
-								type='select'
-								name='select'
-								id='exampleSelect'
-								className='background border-dark'
-							>
-								<option>Male</option>
-								<option>Female</option>
-								<option>Apache</option>
-							</Input>
-						</FormGroup>
-						<FormGroup check>
-							<Label check>
-								<Input type='checkbox' className='background border-dark' /> I
-								agree to the terms of service
-							</Label>
-						</FormGroup>
-						<Button className='primary' type='submit' onClick={toggle}>
+					<form
+						onSubmit={handleSubmit(onSubmit)}
+						className='surface border-dark form-group'
+					>
+						<label>Username</label>
+						<input
+							name='username'
+							type='username'
+							id='exampleEmail'
+							placeholder='matti8'
+							className='background border-dark form-control'
+							ref={register({ required: true, minLength: 3 })}
+						/>
+						{errors.username && errors.username.type === 'required' && (
+							<p>Username is required</p>
+						)}
+						{errors.username && errors.username.type === 'minLength' && (
+							<p>Min length 3</p>
+						)}
+						<Label for='examplePassword'>Password</Label>
+						<input
+							name='password'
+							type='password'
+							id='examplePassword'
+							placeholder='very secure password'
+							className='background border-dark form-control'
+							ref={register({ required: true, minLength: 3 })}
+						/>
+						{errors.password && errors.password.type === 'required' && (
+							<p>Password is required</p>
+						)}
+						{errors.password && errors.password.type === 'minLength' && (
+							<p>Your password is too weak</p>
+						)}
+						<label>Gender</label>
+						<select className='form-control' id='exampleFormControlSelect1'>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+						<div className='form-group form-check'>
+							<input
+								name='checkbox'
+								type='checkbox'
+								className='form-check-input'
+								id='exampleCheck1'
+								ref={register({ required: true })}
+							></input>
+
+							<label className='form-check-label'>
+								I agree to Terms of Service
+							</label>
+							{errors.checkbox && errors.checkbox.type === 'required' && (
+								<p>You need to accept Terms of Service</p>
+							)}
+						</div>
+						<Button className='primary' type='submit'>
 							Register
 						</Button>{' '}
 						<Button className='secondary' onClick={toggle}>
 							Cancel
 						</Button>
-					</Form>
+					</form>
 				</ModalBody>
 			</Modal>
 		</div>

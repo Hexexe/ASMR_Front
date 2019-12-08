@@ -34,7 +34,7 @@ const PostList = props => {
 		<div className='container textcolor' style={epicStyling}>
 			<div className='well'>
 				{sortedPosts.map(post => (
-					<ScrollAnimation animateIn='fadeIn'>
+					<ScrollAnimation animateIn='fadeIn' key={post.id}>
 						<div className='media surface mb-3 jumbotron' key={post.id}>
 							<div className='media-body card-body inline'>
 								<img
