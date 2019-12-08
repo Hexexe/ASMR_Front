@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import {
 	Button,
 	Modal,
-	ModalHeader,
 	ModalBody,
-	ModalFooter,
 	Form,
 	FormGroup,
 	Label,
@@ -23,7 +21,6 @@ const RegisterForm = props => {
 		props.createUser({ username, password })
 	}
 
-	const { className } = props
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
 

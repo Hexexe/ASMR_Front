@@ -4,6 +4,7 @@ import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
 import { like, dislike } from '../reducers/postReducer'
+var dateFormat = require('dateformat')
 
 const postFormRef = React.createRef()
 const url = 'http://localhost:3001/api/uploads/'
@@ -26,6 +27,7 @@ const PostList = props => {
 		b = new Date(b.date)
 		return a > b ? -1 : a < b ? 1 : 0
 	})
+
 	return (
 		<div className='container textcolor' style={epicStyling}>
 			<div className='well'>
@@ -43,13 +45,20 @@ const PostList = props => {
 							<br></br>
 							<p>{post.content}</p>
 							{post.postImg === null ? null : (
-								<img className='mb-3 imageStyling' src={url + post.postImg} />
+								<img
+									className='mb-3 imageStyling'
+									src={url + post.postImg}
+									alt='kuva'
+								/>
 							)}
-							<div className='text-muted'>{post.date}</div>
+							<div className='text-muted '>
+								<small>{dateFormat(post.date, 'HH.MM - d. mmmm yyyy')}</small>
+							</div>
 							<div className='horizontalLineUp'></div>
 							<div className='listStyling '>
 								<ul className=''>
 									<li className=''>
+										{post.wp}
 										<img
 											src={require('../images/ok_sign2.png')}
 											className='imagetoRight'
@@ -58,9 +67,10 @@ const PostList = props => {
 											height='32'
 											onClick={() => props.like(post)}
 										/>
-										{post.wp}
 									</li>
+
 									<li>
+										{post.gtfo}
 										<img
 											src={require('../images/exit_sign2.png')}
 											className=' imagetoRight '
@@ -69,7 +79,6 @@ const PostList = props => {
 											height='32'
 											onClick={() => props.dislike(post)}
 										/>
-										{post.gtfo}
 									</li>
 								</ul>
 							</div>
