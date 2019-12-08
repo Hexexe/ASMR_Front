@@ -1,36 +1,29 @@
 import React, { useState } from 'react'
-import {
-	Button,
-	Modal,
-	ModalBody,
-	Form,
-	FormGroup,
-	Label,
-	Input
-} from 'reactstrap'
+import { Button, Modal, ModalBody, Label } from 'reactstrap'
 import { createUser } from '../reducers/userReducer'
 import { connect } from 'react-redux'
 import useForm from 'react-hook-form'
 
 const RegisterForm = props => {
-	const createUserN = async e => {
+	/* 	const createUserN = async e => {
 		e.preventDefault()
 		const username = e.target.username.value
 		const password = e.target.password.value
 		e.target.username.value = ''
 		e.target.password.value = ''
 		props.createUser({ username, password })
-	}
+	} */
 
 	const createUser2 = async data => {
 		const username = data.username
 		const password = data.password
 		props.createUser({ username, password })
+		setModal(!modal)
 	}
 
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
-	const { register, handleSubmit, watch, errors } = useForm()
+	const { register, handleSubmit, errors } = useForm()
 
 	const onSubmit = data => {
 		createUser2(data)
@@ -61,10 +54,10 @@ const RegisterForm = props => {
 							ref={register({ required: true, minLength: 3 })}
 						/>
 						{errors.username && errors.username.type === 'required' && (
-							<p>Username is required</p>
+							<p className='error'>Username is required</p>
 						)}
 						{errors.username && errors.username.type === 'minLength' && (
-							<p>Min length 3</p>
+							<p className='error'>Min length 3</p>
 						)}
 						<Label for='examplePassword'>Password</Label>
 						<input
@@ -76,10 +69,10 @@ const RegisterForm = props => {
 							ref={register({ required: true, minLength: 3 })}
 						/>
 						{errors.password && errors.password.type === 'required' && (
-							<p>Password is required</p>
+							<p className='error'>Password is required</p>
 						)}
 						{errors.password && errors.password.type === 'minLength' && (
-							<p>Your password is too weak</p>
+							<p className='error'>Your password is too weak</p>
 						)}
 						<label>Gender</label>
 						<select className='form-control' id='exampleFormControlSelect1'>
@@ -102,7 +95,7 @@ const RegisterForm = props => {
 								I agree to Terms of Service
 							</label>
 							{errors.checkbox && errors.checkbox.type === 'required' && (
-								<p>You need to accept Terms of Service</p>
+								<p className='error'>You need to accept Terms of Service</p>
 							)}
 						</div>
 						<Button className='primary' type='submit'>
