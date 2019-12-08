@@ -9,17 +9,23 @@ const epicStyling = {
 const CommentList = props => {
 	const comments = props.comments
 	const id = props.id
-
+	const url = 'http://localhost:3001/api/uploads/'
 	return (
 		<div>
 			{comments
 				.filter(comment => comment.post === id)
-				.sort()
-				.reverse()
 				.map(comment => (
 					<div className='card mb-1 mt-3 background' key={comment.id}>
 						<h5>{props.id}</h5>
 						<p className='card-body'>{comment.content}</p>
+						{comment.postImg === null ? null : (
+							<img
+								className='horizontalLine mb-1'
+								src={url + comment.postImg}
+								width='400'
+								height='400'
+							/>
+						)}
 					</div>
 				))}
 		</div>

@@ -1,8 +1,8 @@
 import commentService from '../services/comments'
 
-export const addComment = a => {
+export const addComment = fd => {
 	return async dispatch => {
-		const newComment = await commentService.create(a)
+		const newComment = await commentService.create(fd)
 		dispatch({
 			type: 'NEW_COMMENT',
 			data: newComment

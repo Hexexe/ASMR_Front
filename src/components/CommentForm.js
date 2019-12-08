@@ -12,14 +12,18 @@ const CommentForm = props => {
 	const id = props.id
 	const addCommentN = async e => {
 		e.preventDefault()
-		const content = e.target.content.value
+		console.log(id)
+		const formData = new FormData()
+		formData.append('content', e.target.content.value)
+		formData.append('postImg', e.target.file.files[0])
+		formData.append('id', id)
+		props.addComment(formData)
 		e.target.content.value = ''
-		props.addComment({ id, content })
 	}
 
 	return (
 		<div>
-			<Form onSubmit={addCommentN}>
+			<Form onSubmit={addCommentN} encType='multipart/form-data'>
 				<div>
 					<label className='sr-only'>Content</label>
 					<textarea
@@ -29,11 +33,14 @@ const CommentForm = props => {
 						name='content'
 						style={epicStyling}
 					/>
+					<input
+						className='form-control col-form-label-lg surface border-dark'
+						placeholder='file'
+						name='file'
+						type='file'
+					/>
 				</div>
-				<button
-					className='btn primary justify-content-end btn-space-top'
-					type='submit'
-				>
+				<button className='btn primary justify-content-end btn-space-top' type='submit'>
 					Comment
 				</button>
 			</Form>
@@ -52,8 +59,5 @@ const mapStateToProps = state => {
 	}
 }
 const mapDispatchToProps = { addComment }
-const ConnectedComments = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(CommentForm)
+const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(CommentForm)
 export default ConnectedComments

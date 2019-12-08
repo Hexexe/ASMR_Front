@@ -30,7 +30,7 @@ const App = props => {
 			postService.setToken(user.token)
 			commentService.setToken(user.token)
 		}
-	}, [props.posts.length])
+	}, [props.posts.length, props.comments.length])
 
 	const handleLogin = async event => {
 		event.preventDefault()
@@ -59,33 +59,18 @@ const App = props => {
 	return (
 		<div className='textcolor'>
 			{user === null ? (
-				<LoginForm
-					handleLogin={handleLogin}
-					username={username}
-					password={password}
-				/>
+				<LoginForm handleLogin={handleLogin} username={username} password={password} />
 			) : (
 				<LogoutForm user={user} logout={logout}></LogoutForm>
 			)}
 			<br></br>
 			<br></br>
-			<img
-				src={require('./images/logo.png')}
-				className=''
-				alt='kuva'
-				width='100%'
-			></img>
+			<img src={require('./images/logo.png')} className='' alt='kuva' width='100%'></img>
 			<div className='mx-auto'>
 				{user === null ? (
-					<LoginForm
-						handleLogin={handleLogin}
-						username={username}
-						password={password}
-					/>
+					<LoginForm handleLogin={handleLogin} username={username} password={password} />
 				) : (
-					<>
-						<PostForm />
-					</>
+					<PostForm />
 				)}
 				<h1>Posts</h1>
 			</div>

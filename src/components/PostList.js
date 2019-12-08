@@ -10,9 +10,9 @@ const url = 'http://localhost:3001/api/uploads/'
 const epicStyling = {
 	width: '55rem'
 }
-const lmao = {
+/* const lmao = {
 	float: 'left'
-}
+} */
 
 const PostList = props => {
 	const posts = props.posts
