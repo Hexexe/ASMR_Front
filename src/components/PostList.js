@@ -21,10 +21,15 @@ const PostList = props => {
 		const user = users.find(user => user.posts.find(post => post.id === postid))
 		return user === undefined ? 'Too Slow' : user.username
 	}
+	const sortedPosts = posts.sort((a, b) => {
+		a = new Date(a.date)
+		b = new Date(b.date)
+		return a > b ? -1 : a < b ? 1 : 0
+	})
 	return (
 		<div className='container textcolor' style={epicStyling}>
 			<div className='well'>
-				{posts.map(post => (
+				{sortedPosts.map(post => (
 					<div className='media surface mb-3 jumbotron' key={post.id}>
 						<div className='media-body card-body inline'>
 							<img

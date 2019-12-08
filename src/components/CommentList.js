@@ -10,9 +10,14 @@ const CommentList = props => {
 	const comments = props.comments
 	const id = props.id
 	const url = 'http://localhost:3001/api/uploads/'
+	const sortedCom = comments.sort((a, b) => {
+		a = new Date(a.date)
+		b = new Date(b.date)
+		return a > b ? -1 : a < b ? 1 : 0
+	})
 	return (
 		<div>
-			{comments
+			{sortedCom
 				.filter(comment => comment.post === id)
 				.map(comment => (
 					<div className='card mb-1 mt-3 background' key={comment.id}>
