@@ -43,16 +43,12 @@ const PostList = props => {
 							<br></br>
 							<p>{post.content}</p>
 							{post.postImg === null ? null : (
-								<img
-									className='horizontalLine mb-1'
-									src={url + post.postImg}
-									width='400'
-									height='400'
-								/>
+								<img className='mb-3 imageStyling' src={url + post.postImg} />
 							)}
+							<div className='text-muted'>{post.date}</div>
+							<div className='horizontalLineUp'></div>
 							<div className='listStyling '>
 								<ul className=''>
-									<li>{post.date}</li>
 									<li className=''>
 										<img
 											src={require('../images/ok_sign2.png')}
@@ -77,7 +73,9 @@ const PostList = props => {
 									</li>
 								</ul>
 							</div>
-							<p className='horizontalLine pb-1'></p>
+							<div className='horizontalLineDown'></div>
+							<br></br>
+
 							<CommentList id={post.id} />
 							{props.user === null ? (
 								''

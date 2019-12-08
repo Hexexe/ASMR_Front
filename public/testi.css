@@ -12,10 +12,16 @@ h1 {
 	margin-bottom: 10px;
 }
 
-.horizontalLine {
-	padding-bottom: 20px;
+.horizontalLineUp {
 	border-bottom: 1px solid #ccc;
-	padding-top: 0;
+	padding-top: 10px;
+	margin: 0;
+}
+
+.horizontalLineDown {
+	border-bottom: 1px solid #ccc;
+	padding-top: 40px;
+	margin: 0;
 }
 
 .imageToLeft {
@@ -31,9 +37,14 @@ h1 {
 	margin-left: 15px;
 }
 
+.imageStyling {
+	max-width: 80%;
+	max-height: 80%;
+}
+
 .listStyling ul {
 	list-style-type: none;
-	margin: 0;
+	margin: 5px;
 	padding: 0;
 	font-size: 21px;
 	font-family: Garamond, serif;
