@@ -33,73 +33,67 @@ const PostList = props => {
 	return (
 		<div className='container textcolor' style={epicStyling}>
 			<div className='well'>
-				{sortedPosts.map(post => (
-					<ScrollAnimation animateIn='fadeIn' key={post.id}>
-						<div className='media surface mb-3 jumbotron' key={post.id}>
-							<div className='media-body card-body inline'>
-								<img
-									src={require('../images/apache.png')}
-									className='media-object imageToLeft'
-									alt='kuva'
-									width='64'
-									height='64'
-								/>
-								<h2 className='media-heading'>{`${usernamelol(
-									users,
-									post.id
-								)} ${post.id}`}</h2>
-								<br />
-								<p>{post.content}</p>
-								{post.postImg === null ? null : (
+				{sortedPosts
+					.filter(p => p.parentId === null)
+					.map(post => (
+						<ScrollAnimation animateIn='fadeIn' key={post.id}>
+							<div className='media surface mb-3 jumbotron' key={post.id}>
+								<div className='media-body card-body inline'>
 									<img
-										className='mb-3 imageStyling'
-										src={url + post.postImg}
+										src={require('../images/apache.png')}
+										className='media-object imageToLeft'
 										alt='kuva'
+										width='64'
+										height='64'
 									/>
-								)}
-								<div className='text-muted '>
-									<small>{dateFormat(post.date, 'HH.MM - d. mmmm yyyy')}</small>
-								</div>
-								<div className='horizontalLineUp'></div>
-								<div className='listStyling '>
-									<ul className=''>
-										<li className=''>
-											{post.wp}
-											<img
-												src={require('../images/ok_sign2.png')}
-												className='imagetoRight'
-												alt='kuva'
-												width='32'
-												height='32'
-												onClick={() => props.like(post)}
-											/>
-										</li>
+									<h2 className='media-heading'>{`${usernamelol(users, post.id)} ${post.id}`}</h2>
+									<br />
+									<p>{post.content}</p>
+									{post.postImg === null ? null : (
+										<img className='mb-3 imageStyling' src={url + post.postImg} alt='kuva' />
+									)}
+									<div className='text-muted '>
+										<small>{dateFormat(post.date, 'HH.MM - d. mmmm yyyy')}</small>
+									</div>
+									<div className='horizontalLineUp'></div>
+									<div className='listStyling '>
+										<ul className=''>
+											<li className=''>
+												{post.wp}
+												<img
+													src={require('../images/ok_sign2.png')}
+													className='imagetoRight'
+													alt='kuva'
+													width='32'
+													height='32'
+													onClick={() => props.like(post)}
+												/>
+											</li>
 
-										<li>
-											{post.gtfo}
-											<img
-												src={require('../images/exit_sign2.png')}
-												className=' imagetoRight '
-												alt='kuva'
-												width='32'
-												height='32'
-												onClick={() => props.dislike(post)}
-											/>
-										</li>
-										<li>
-											<p>Reply</p>
-										</li>
-									</ul>
+											<li>
+												{post.gtfo}
+												<img
+													src={require('../images/exit_sign2.png')}
+													className=' imagetoRight '
+													alt='kuva'
+													width='32'
+													height='32'
+													onClick={() => props.dislike(post)}
+												/>
+											</li>
+											<li>
+												<p>Reply</p>
+											</li>
+										</ul>
+									</div>
+									<div className='horizontalLineDown'></div>
+									<br></br>
+									<CommentList id={post.id} />
+									{props.user === null ? '' : <CommentForm id={post.id} />}
 								</div>
-								<div className='horizontalLineDown'></div>
-								<br></br>
-
-								<CommentList id={post.id} />
-								{props.user === null ? '' : <CommentForm id={post.id} />}
 							</div>
-						</div>
-					</ScrollAnimation>
-				))}
+						</ScrollAnimation>
+					))}
 			</div>
 		</div>
 	)

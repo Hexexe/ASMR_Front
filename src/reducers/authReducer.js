@@ -1,5 +1,4 @@
 import postService from '../services/posts'
-import commentService from '../services/comments'
 import loginService from '../services/users'
 
 const initialState = {
@@ -40,20 +39,17 @@ const authReducer = (state = initialState, action) => {
 		case 'LOGIN': {
 			localStorage.setItem('currentUser', JSON.stringify(action.data))
 			postService.setToken(action.data.token)
-			commentService.setToken(action.data.token)
 			return { ...state, ...action.data }
 		}
 		case 'LOGOUT': {
 			localStorage.removeItem('currentUser')
 			postService.setToken(null)
-			commentService.setToken(null)
 			return { ...state, ...initialState }
 		}
 		case 'CHECKU': {
 			const pState = JSON.parse(localStorage.getItem('currentUser'))
 			if (pState) {
 				postService.setToken(pState.token)
-				commentService.setToken(pState.token)
 				return pState
 			} else {
 				return initialState

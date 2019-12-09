@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { initializePosts } from './reducers/postReducer'
-import { initializeComments } from './reducers/commentReducer'
 import { initializeUsers } from './reducers/userReducer'
 import { checkUser } from './reducers/authReducer'
 import PostList from './components/PostList'
@@ -16,8 +15,7 @@ const App = props => {
 		props.checkUser()
 		props.initializeUsers()
 		props.initializePosts()
-		props.initializeComments()
-	}, [props.posts.length, props.comments.length])
+	}, [props.posts.length])
 
 	//yaysdfsdf
 	return (
@@ -25,12 +23,7 @@ const App = props => {
 			{props.auth.username === null ? <LoginForm /> : <LogoutForm />}
 			<br></br>
 			<br></br>
-			<img
-				src={require('./images/logo.png')}
-				className=''
-				alt='kuva'
-				width='100%'
-			></img>
+			<img src={require('./images/logo.png')} className='' alt='kuva' width='100%'></img>
 			<div className='mx-auto'>
 				{props.auth.username === null ? <LoginForm /> : <PostForm />}
 				<h1>Posts</h1>
@@ -42,8 +35,7 @@ const App = props => {
 				buttonText='Yes, I understand'
 				buttonStyle={{ background: '#bb86fc', color: 'white' }}
 			>
-				In order to optimize the website and to continuously improve ASMR, we
-				collect your data.{' '}
+				In order to optimize the website and to continuously improve ASMR, we collect your data.{' '}
 			</CookieConsent>
 			<Footer />
 		</div>
@@ -51,11 +43,9 @@ const App = props => {
 }
 const mapStateToProps = state => ({
 	posts: state.posts,
-	comments: state.comments,
 	auth: state.auth
 })
 const mapDispatchToProps = {
-	initializeComments,
 	initializePosts,
 	initializeUsers,
 	checkUser

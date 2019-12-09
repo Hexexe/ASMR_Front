@@ -37,6 +37,17 @@ export const initializePosts = () => {
 		})
 	}
 }
+
+export const addComment = fd => {
+	return async dispatch => {
+		const newComment = await postService.create(fd)
+		dispatch({
+			type: 'NEW_COMMENT',
+			data: newComment
+		})
+	}
+}
+
 const postReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'NEW_POST': {
@@ -56,6 +67,12 @@ const postReducer = (state = [], action) => {
 			const dislikedPost = state.find(n => n.id === id)
 			const disliked = { ...dislikedPost, gtfo: dislikedPost.gtfo + 1 }
 			return state.map(p => (p.id !== id ? p : disliked))
+		}
+		case 'NEW_COMMENT': {
+			const id = action.data.parentId
+			const ogPost = state.find(n => n.id === id)
+			const commented = { ...ogPost, comments: ogPost.comments.concat(action.data) }
+			return state.map(p => (p.id !== id ? p : commented))
 		}
 		default: {
 			return state

@@ -8,7 +8,7 @@ const epicStyling = {
 } */
 
 const CommentList = props => {
-	const comments = props.comments
+	const comments = props.posts
 	const id = props.id
 	const url = 'http://localhost:3001/api/uploads/'
 	const sortedCom = comments.sort((a, b) => {
@@ -20,7 +20,7 @@ const CommentList = props => {
 	return (
 		<div>
 			{sortedCom
-				.filter(comment => comment.post === id)
+				.filter(comment => comment.parentId === id)
 				.map(comment => (
 					<div className='card mb-1 mt-3 background' key={comment.id}>
 						<h5 className='text-muted'>
@@ -53,7 +53,6 @@ const CommentList = props => {
 }
 const mapStateToProps = state => {
 	return {
-		comments: state.comments,
 		posts: state.posts
 	}
 }
