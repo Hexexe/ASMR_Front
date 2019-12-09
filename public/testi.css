@@ -113,3 +113,18 @@ h1 {
 	display: inline;
 	content: '⚠ ';
 }
+
+select {
+	background: #101010 !important;
+	color: #fff;
+}
+option:not(:checked) {
+	background-color: #1f1f1f !important;
+	color: #000;
+}
+
+input,
+textarea {
+	background-color: #1f1f1f !important;
+	color: #fff;
+}

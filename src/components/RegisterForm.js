@@ -24,7 +24,6 @@ const RegisterForm = props => {
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
 	const { register, handleSubmit, errors } = useForm()
-	const passwordRegex = /(?=.*[0-9])/
 
 	const onSubmit = data => {
 		createUser2(data)
@@ -50,7 +49,7 @@ const RegisterForm = props => {
 							name='username'
 							type='username'
 							id='exampleEmail'
-							placeholder='matti8'
+							placeholder='username'
 							className='background border-dark form-control'
 							ref={register({ required: true, minLength: 3 })}
 						/>
@@ -65,12 +64,12 @@ const RegisterForm = props => {
 							name='password'
 							type='password'
 							id='examplePassword'
-							placeholder='very secure password'
+							placeholder='password'
 							className='background border-dark form-control'
 							ref={register({
 								required: true,
 								minLength: 8,
-								pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+								pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
 							})}
 						/>
 						{errors.password && errors.password.type === 'required' && (
@@ -91,17 +90,20 @@ const RegisterForm = props => {
 									rel='noopener noreferrer'
 								>
 									{' '}
-									this site.
+									this site
 								</a>
+								.
 							</p>
 						)}
-						<label>Gender</label>
-						<select className='form-control' id='exampleFormControlSelect1'>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
+						<label>
+							Gender <label className='text-muted'>(optional)</label>
+						</label>
+						<br></br>
+						<select className='form-control' data-style='btn-warning'>
+							<option selected>Choose...</option>
+							<option>Male</option>
+							<option>Female</option>
+							<option>Apache</option>
 						</select>
 						<div className='form-group form-check'>
 							<input

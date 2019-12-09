@@ -24,10 +24,18 @@ const CommentList = props => {
 				.map(comment => (
 					<div className='card mb-1 mt-3 background' key={comment.id}>
 						<h5 className='text-muted'>
+							{' '}
+							<img
+								src={require('../images/apache.png')}
+								className='media-object imageToLeft'
+								alt='kuva'
+								width='64'
+								height='64'
+							/>
 							{id} {dateFormat(comment.date, 'd. mmmm')}
 						</h5>
 						<p className='card-body'>
-							<small>{comment.content}</small>
+							<small className='ml-5 pl-3'>{comment.content}</small>
 						</p>
 						{comment.postImg === null ? null : (
 							<img

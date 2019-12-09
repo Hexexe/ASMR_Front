@@ -44,11 +44,18 @@ const PostList = props => {
 									width='64'
 									height='64'
 								/>
-								<h2 className='media-heading'>{`${usernamelol(users, post.id)} ${post.id}`}</h2>
+								<h2 className='media-heading'>{`${usernamelol(
+									users,
+									post.id
+								)} ${post.id}`}</h2>
 								<br />
 								<p>{post.content}</p>
 								{post.postImg === null ? null : (
-									<img className='mb-3 imageStyling' src={url + post.postImg} alt='kuva' />
+									<img
+										className='mb-3 imageStyling'
+										src={url + post.postImg}
+										alt='kuva'
+									/>
 								)}
 								<div className='text-muted '>
 									<small>{dateFormat(post.date, 'HH.MM - d. mmmm yyyy')}</small>
