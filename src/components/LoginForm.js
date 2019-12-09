@@ -1,63 +1,67 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import RegisterForm from './RegisterForm'
+import { handleLogin } from '../reducers/authReducer'
+import { connect } from 'react-redux'
 
-const purgeReset = p => {
-	// eslint-disable-next-line no-unused-vars
-	const { reset, ...purged } = p
-	return purged
-}
-
-const LoginForm = ({ handleLogin, username, password }) => (
-	<nav className='navbar fixed-top navbar-expand-md surface'>
-		<button
-			className='navbar-toggler navbar-toggler-right'
-			type='button'
-			data-toggle='collapse'
-			data-target='#navbarNavAltMarkup'
-			aria-controls='navbarNavAltMarkup'
-			aria-expanded='false'
-			aria-label='Toggle navigation'
-		>
-			<span className='navbar-toggler-icon'></span>
-		</button>
-		<div className='container'>
-			<div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
-				<div className='navbar-nav ml-auto'>
-					<form className='form-inline ' onSubmit={handleLogin}>
-						<div className='form-row'>
-							<div className='col'>
-								<input
-									className='form-control mr-sm-0 '
-									placeholder='username'
-									{...purgeReset(username)}
-								/>
+const LoginForm = props => {
+	const handleLoginN = async e => {
+		e.preventDefault()
+		const username = e.target.username.value
+		const password = e.target.password.value
+		props.handleLogin({ username, password })
+		e.target.username.value = ''
+		e.target.password.value = ''
+	}
+	return (
+		<nav className='navbar fixed-top navbar-expand-md surface'>
+			<button
+				className='navbar-toggler navbar-toggler-right'
+				type='button'
+				data-toggle='collapse'
+				data-target='#navbarNavAltMarkup'
+				aria-controls='navbarNavAltMarkup'
+				aria-expanded='false'
+				aria-label='Toggle navigation'
+			>
+				<span className='navbar-toggler-icon'></span>
+			</button>
+			<div className='container'>
+				<div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
+					<div className='navbar-nav ml-auto'>
+						<form className='form-inline ' onSubmit={handleLoginN}>
+							<div className='form-row'>
+								<div className='col'>
+									<input className='form-control mr-sm-0 ' placeholder='username' name='username' />
+								</div>
+								<div className='col'>
+									<input className='form-control mr-sm-0' placeholder='password' name='password' />
+								</div>
+								<div className='col'>
+									<button type='submit' className='btn primary'>
+										login
+									</button>
+								</div>
+								<div className='col'></div>
 							</div>
-							<div className='col'>
-								<input
-									className='form-control mr-sm-0'
-									placeholder='username'
-									{...purgeReset(password)}
-								/>
-							</div>
-							<div className='col'>
-								<button type='submit' className='btn primary'>
-									login
-								</button>
-							</div>
-							<div className='col'></div>
-						</div>
-					</form>
-					<RegisterForm />
+						</form>
+						<RegisterForm />
+					</div>
 				</div>
 			</div>
-		</div>
-	</nav>
-)
-
-LoginForm.propTypes = {
+		</nav>
+	)
+}
+/* LoginForm.propTypes = {
 	handleLogin: PropTypes.func.isRequired,
 	username: PropTypes.object.isRequired,
 	password: PropTypes.object.isRequired
+} */
+const mapStateToProps = state => {
+	return {
+		auth: state.auth
+	}
 }
-export default LoginForm
+const mapDispatchToProps = { handleLogin }
+const ConnectedLogin = connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default ConnectedLogin

@@ -1,6 +1,8 @@
 import React from 'react'
+import { logout } from '../reducers/authReducer'
+import { connect } from 'react-redux'
 
-const LogoutForm = ({ user, logout }) => (
+const LogoutForm = props => (
 	<div>
 		<nav className='navbar fixed-top navbar-expand-md surface'>
 			<div className='collapse navbar-collapse'></div>
@@ -13,10 +15,10 @@ const LogoutForm = ({ user, logout }) => (
 					aria-haspopup='true'
 					aria-expanded='false'
 				>
-					<b>{user.username} </b>logged in
+					<b>{props.auth.username} </b>logged in
 				</button>
 				<div className='dropdown-menu dropdown-menu-right mb-2 surface'>
-					<button onClick={logout} className='btn secondary btn-space-left'>
+					<button onClick={() => props.logout()} className='btn secondary btn-space-left'>
 						logout
 					</button>
 				</div>
@@ -25,4 +27,11 @@ const LogoutForm = ({ user, logout }) => (
 	</div>
 )
 
-export default LogoutForm
+const mapStateToProps = state => {
+	return {
+		auth: state.auth
+	}
+}
+const mapDispatchToProps = { logout }
+const ConnectedLogin = connect(mapStateToProps, mapDispatchToProps)(LogoutForm)
+export default ConnectedLogin
