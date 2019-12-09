@@ -24,6 +24,7 @@ const RegisterForm = props => {
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
 	const { register, handleSubmit, errors } = useForm()
+	const passwordRegex = /(?=.*[0-9])/
 
 	const onSubmit = data => {
 		createUser2(data)
@@ -66,13 +67,33 @@ const RegisterForm = props => {
 							id='examplePassword'
 							placeholder='very secure password'
 							className='background border-dark form-control'
-							ref={register({ required: true, minLength: 3 })}
+							ref={register({
+								required: true,
+								minLength: 8,
+								pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+							})}
 						/>
 						{errors.password && errors.password.type === 'required' && (
 							<p className='error'>Password is required</p>
 						)}
 						{errors.password && errors.password.type === 'minLength' && (
-							<p className='error'>Your password is too weak</p>
+							<p className='error'>Your password is too short</p>
+						)}
+						{errors.password && errors.password.type === 'pattern' && (
+							<p className='error'>
+								Too weak password. Your password must contain at least 1
+								lowercase alphabetical character, 1 uppercase alphabetical
+								character, 1 numeric character and 1 special character. If you
+								need ideas how to create decent password visit{' '}
+								<a
+									href='https://passwordsgenerator.net/'
+									target='_blank'
+									rel='noopener noreferrer'
+								>
+									{' '}
+									this site.
+								</a>
+							</p>
 						)}
 						<label>Gender</label>
 						<select className='form-control' id='exampleFormControlSelect1'>
