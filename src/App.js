@@ -16,7 +16,7 @@ const App = props => {
 		props.initializeUsers()
 		props.initializePosts()
 		props.initializeComments()
-	}, [props.posts.length, props.comments.length, props.auth.token])
+	}, [props.posts.length, props.comments.length])
 
 	//yaysdfsdf
 	return (
