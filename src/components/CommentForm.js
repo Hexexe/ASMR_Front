@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 //import PropTypes from 'prop-types'
 import { addComment } from '../reducers/commentReducer'
 import { connect } from 'react-redux'
 import { Form } from 'reactstrap'
-//sdf
+import { Button, Modal, ModalBody, Input, Label } from 'reactstrap'
 
 const CommentForm = props => {
 	const epicStyling = {
@@ -20,29 +20,47 @@ const CommentForm = props => {
 		e.target.content.value = ''
 	}
 
+	const [modal, setModal] = useState(false)
+	const toggle = () => setModal(!modal)
+
 	return (
 		<div>
-			<Form onSubmit={addCommentN} encType='multipart/form-data'>
-				<div>
-					<label className='sr-only'>Content</label>
-					<textarea
-						className='card background textcolor border-dark'
-						rows='3'
-						placeholder='content'
-						name='content'
-						style={epicStyling}
-					/>
-					<input
-						className='form-control col-form-label-lg surface border-dark'
-						placeholder='file'
-						name='file'
-						type='file'
-					/>
-				</div>
-				<button className='btn primary justify-content-end btn-space-top' type='submit'>
-					Comment
-				</button>
-			</Form>
+			<Button className='primary text-dark' onClick={toggle}>
+				Comment
+			</Button>
+			<Modal
+				isOpen={modal}
+				toggle={toggle}
+				className='surface textcolor border-dark customForm'
+			>
+				<ModalBody className='surface'>
+					<Form onSubmit={addCommentN} encType='multipart/form-data'>
+						<div>
+							<Label className='sr-only'>Content</Label>
+							<textarea
+								className='card background textcolor border-dark'
+								rows='3'
+								placeholder='content'
+								name='content'
+								style={epicStyling}
+							/>
+							<Input
+								className='form-control col-form-label-lg surface border-dark'
+								placeholder='file'
+								name='file'
+								type='file'
+							/>
+						</div>
+						<Button
+							className='btn primary justify-content-end btn-space-top'
+							type='submit'
+							onClick={toggle}
+						>
+							Comment
+						</Button>
+					</Form>
+				</ModalBody>
+			</Modal>
 		</div>
 	)
 }
@@ -58,5 +76,8 @@ const mapStateToProps = state => {
 	}
 }
 const mapDispatchToProps = { addComment }
-const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(CommentForm)
+const ConnectedComments = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(CommentForm)
 export default ConnectedComments

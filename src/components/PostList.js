@@ -95,13 +95,7 @@ const PostList = props => {
 								<br></br>
 
 								<CommentList id={post.id} />
-								{props.user === null ? (
-									''
-								) : (
-									<Togglable buttonLabel='Comment' ref={postFormRef}>
-										<CommentForm id={post.id} />
-									</Togglable>
-								)}
+								{props.user === null ? '' : <CommentForm id={post.id} />}
 							</div>
 						</div>
 					</ScrollAnimation>

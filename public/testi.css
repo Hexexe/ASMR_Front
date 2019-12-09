@@ -128,3 +128,9 @@ textarea {
 	background-color: #1f1f1f !important;
 	color: #fff;
 }
+
+.customForm {
+	position: absolute;
+	top: 30%;
+	left: 37%;
+}
