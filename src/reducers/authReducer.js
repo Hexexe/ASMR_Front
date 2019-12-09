@@ -51,8 +51,13 @@ const authReducer = (state = initialState, action) => {
 		}
 		case 'CHECKU': {
 			const pState = JSON.parse(localStorage.getItem('currentUser'))
-
-			return pState ? pState : initialState
+			if (pState) {
+				postService.setToken(pState.token)
+				commentService.setToken(pState.token)
+				return pState
+			} else {
+				return initialState
+			}
 		}
 		default:
 			return state

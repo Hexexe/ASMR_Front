@@ -22,7 +22,7 @@ const PostList = props => {
 
 	const usernamelol = (users, postid) => {
 		const user = users.find(user => user.posts.find(post => post.id === postid))
-		return user === undefined ? 'Too Slow' : user.username
+		return user === undefined ? 'Anon' : user.username
 	}
 	const sortedPosts = posts.sort((a, b) => {
 		a = new Date(a.date)
@@ -44,15 +44,11 @@ const PostList = props => {
 									width='64'
 									height='64'
 								/>
-								<h2 className='media-heading'>{usernamelol(users, post.id)}</h2>
-								<br></br>
+								<h2 className='media-heading'>{`${usernamelol(users, post.id)} ${post.id}`}</h2>
+								<br />
 								<p>{post.content}</p>
 								{post.postImg === null ? null : (
-									<img
-										className='mb-3 imageStyling'
-										src={url + post.postImg}
-										alt='kuva'
-									/>
+									<img className='mb-3 imageStyling' src={url + post.postImg} alt='kuva' />
 								)}
 								<div className='text-muted '>
 									<small>{dateFormat(post.date, 'HH.MM - d. mmmm yyyy')}</small>
@@ -82,6 +78,9 @@ const PostList = props => {
 												height='32'
 												onClick={() => props.dislike(post)}
 											/>
+										</li>
+										<li>
+											<p>Reply</p>
 										</li>
 									</ul>
 								</div>
