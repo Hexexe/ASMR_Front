@@ -1,23 +1,15 @@
 import React from 'react'
 import { logout } from '../reducers/authReducer'
 import { connect } from 'react-redux'
+import Profile from './Profile'
 
 const LogoutForm = props => (
 	<div>
 		<nav className='navbar fixed-top navbar-expand-md surface'>
-			<div className='collapse navbar-collapse'></div>
-
+			<div className='collapse navbar-collapse' />
 			<div className='btn-group'>
-				<button
-					type='button'
-					className='btn secondary dropdown-toggle'
-					data-toggle='dropdown'
-					aria-haspopup='true'
-					aria-expanded='false'
-				>
-					<b>{props.auth.username} </b>logged in
-				</button>
-				<div className='dropdown-menu dropdown-menu-right mb-2 surface'>
+				<div>
+					<Profile />
 					<button onClick={() => props.logout()} className='btn secondary btn-space-left'>
 						logout
 					</button>

@@ -21,15 +21,15 @@ const App = props => {
 	return (
 		<div className='textcolor'>
 			{props.auth.username === null ? <LoginForm /> : <LogoutForm />}
-			<br></br>
-			<br></br>
-			<img src={require('./images/logo.png')} className='' alt='kuva' width='100%'></img>
+			<br />
+			<br />
+			<img src={require('./images/logo.png')} className='' alt='kuva' width='100%' />
 			<div className='mx-auto'>
 				{props.auth.username === null ? <LoginForm /> : <PostForm />}
 				<h1>Posts</h1>
 			</div>
 			<PostList />
-			<div className='row justify-content-center'></div>
+			<div className='row justify-content-center' />
 			<CookieConsent
 				location='bottom'
 				buttonText='Yes, I understand'

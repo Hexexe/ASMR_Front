@@ -69,10 +69,7 @@ const postReducer = (state = [], action) => {
 			return state.map(p => (p.id !== id ? p : disliked))
 		}
 		case 'NEW_COMMENT': {
-			const id = action.data.parentId
-			const ogPost = state.find(n => n.id === id)
-			const commented = { ...ogPost, comments: ogPost.comments.concat(action.data) }
-			return state.map(p => (p.id !== id ? p : commented))
+			return state.concat(action.data)
 		}
 		default: {
 			return state
