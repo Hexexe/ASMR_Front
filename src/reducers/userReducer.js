@@ -9,6 +9,16 @@ export const createUser = a => {
 		})
 	}
 }
+
+export const updateProfile = () => {
+	return async dispatch => {
+		const users = await UserService.getAllUsers()
+		dispatch({
+			type: 'UP',
+			data: users
+		})
+	}
+}
 export const initializeUsers = () => {
 	return async dispatch => {
 		const users = await UserService.getAllUsers()
@@ -24,6 +34,8 @@ const userReducer = (state = [], action) => {
 		case 'NEW_USER':
 			return state.concat(action.data)
 		case 'INIT_U':
+			return action.data
+		case 'UP':
 			return action.data
 		default:
 			return state

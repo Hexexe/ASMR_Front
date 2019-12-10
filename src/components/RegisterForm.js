@@ -34,16 +34,9 @@ const RegisterForm = props => {
 			<Button className='primary text-dark' onClick={toggle}>
 				Register
 			</Button>
-			<Modal
-				isOpen={modal}
-				toggle={toggle}
-				className='surface textcolor border-dark'
-			>
+			<Modal isOpen={modal} toggle={toggle} className='surface textcolor border-dark'>
 				<ModalBody className='surface'>
-					<form
-						onSubmit={handleSubmit(onSubmit)}
-						className='surface border-dark form-group'
-					>
+					<form onSubmit={handleSubmit(onSubmit)} className='surface border-dark form-group'>
 						<label>Username</label>
 						<input
 							name='username'
@@ -80,15 +73,10 @@ const RegisterForm = props => {
 						)}
 						{errors.password && errors.password.type === 'pattern' && (
 							<p className='error'>
-								Too weak password. Your password must contain at least 1
-								lowercase alphabetical character, 1 uppercase alphabetical
-								character, 1 numeric character and 1 special character. If you
-								need ideas how to create decent password visit{' '}
-								<a
-									href='https://passwordsgenerator.net/'
-									target='_blank'
-									rel='noopener noreferrer'
-								>
+								Too weak password. Your password must contain at least 1 lowercase alphabetical
+								character, 1 uppercase alphabetical character, 1 numeric character and 1 special
+								character. If you need ideas how to create decent password visit{' '}
+								<a href='https://passwordsgenerator.net/' target='_blank' rel='noopener noreferrer'>
 									{' '}
 									this site
 								</a>
@@ -99,12 +87,6 @@ const RegisterForm = props => {
 							Gender <label className='text-muted'>(optional)</label>
 						</label>
 						<br></br>
-						<select className='form-control' data-style='btn-warning'>
-							<option selected>Choose...</option>
-							<option>Male</option>
-							<option>Female</option>
-							<option>Apache</option>
-						</select>
 						<div className='form-group form-check'>
 							<input
 								name='checkbox'
@@ -114,9 +96,7 @@ const RegisterForm = props => {
 								ref={register({ required: true })}
 							></input>
 
-							<label className='form-check-label'>
-								I agree to Terms of Service
-							</label>
+							<label className='form-check-label'>I agree to Terms of Service</label>
 							{errors.checkbox && errors.checkbox.type === 'required' && (
 								<p className='error'>You need to accept Terms of Service</p>
 							)}
