@@ -23,7 +23,12 @@ const App = props => {
 			{props.auth.username === null ? <LoginForm /> : <LogoutForm />}
 			<br />
 			<br />
-			<img src={require('./images/logo.png')} className='' alt='kuva' width='100%' />
+			<img
+				src={require('./images/logo.png')}
+				className=''
+				alt='kuva'
+				width='100%'
+			/>
 			<div className='mx-auto'>
 				{props.auth.username === null ? <LoginForm /> : <PostForm />}
 				<h1>Posts</h1>
@@ -35,7 +40,8 @@ const App = props => {
 				buttonText='Yes, I understand'
 				buttonStyle={{ background: '#bb86fc', color: 'white' }}
 			>
-				In order to optimize the website and to continuously improve ASMR, we collect your data.{' '}
+				In order to optimize the website and to continuously improve ASMR, we
+				collect your data.{' '}
 			</CookieConsent>
 			<Footer />
 		</div>

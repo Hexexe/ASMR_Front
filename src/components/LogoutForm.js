@@ -8,9 +8,12 @@ const LogoutForm = props => (
 		<nav className='navbar fixed-top navbar-expand-md surface'>
 			<div className='collapse navbar-collapse' />
 			<div className='btn-group'>
-				<div>
+				<div className='navbar-nav'>
 					<Profile />
-					<button onClick={() => props.logout()} className='btn secondary btn-space-left'>
+					<button
+						onClick={() => props.logout()}
+						className='btn secondary btn-space-left'
+					>
 						logout
 					</button>
 				</div>

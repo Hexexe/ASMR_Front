@@ -24,6 +24,15 @@ h1 {
 	margin: 0;
 }
 
+.borderBottom {
+	border-bottom: 1rem solid;
+	border-bottom-color: #101010;
+}
+
+.commentControl {
+	padding-left: 1.25rem;
+}
+
 .imageToLeft {
 	float: left;
 	border-radius: 50%;
@@ -50,7 +59,7 @@ h1 {
 	font-family: Garamond, serif;
 }
 .listStyling li {
-	float: right;
+	float: left;
 }
 
 .listStyling li a {
@@ -133,4 +142,8 @@ textarea {
 	position: absolute;
 	top: 30%;
 	left: 37%;
+}
+
+img .selected {
+	box-shadow: 0px 12px 22px 1px red;
 }

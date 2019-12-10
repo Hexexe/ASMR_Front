@@ -19,7 +19,7 @@ const Post = props => {
 	}
 	return (
 		<div className='media surface mb-3 jumbotron' key={post.id}>
-			<div className='media-body card-body inline'>
+			<div className='media-body commentControl inline'>
 				{/* Käyttäjän kuva */}
 				<img
 					src={require('../images/avatars/wojak.png')}
