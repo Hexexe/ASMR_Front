@@ -8,10 +8,11 @@ import { Modal, ModalBody } from 'reactstrap'
 const Profile = props => {
 	const users = props.users
 	const user = JSON.parse(localStorage.getItem('currentUser'))
-	const currentUser = users ? users.find(u => (u.id = user.id)) : null
 
 	const updateTest = async e => {
 		e.preventDefault()
+		const currentUser = users.find(u => (u.username = user.username))
+		console.log(currentUser)
 		const name = e.target.name.value
 		currentUser.name = name
 		props.updateProfileTest(currentUser)
@@ -21,7 +22,7 @@ const Profile = props => {
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
 
-	const usernamelol = (users, postid) => {
+	/* 	const usernamelol = (users, postid) => {
 		const user = users.find(user => user.posts.find(post => post === postid))
 		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
 	}
@@ -29,7 +30,7 @@ const Profile = props => {
 	const current = (users, postid) => {
 		const user = users.find(user => user.posts.find(post => post === postid))
 		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
-	}
+	} */
 
 	//console.log('haha', user.id)
 
@@ -68,7 +69,7 @@ const Profile = props => {
 								<input
 									type='text'
 									className='form-control textcolor'
-									defaultValue={usernamelol(users)}
+									defaultValue={user.name}
 									name='name'
 								></input>
 							</div>
