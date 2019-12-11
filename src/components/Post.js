@@ -10,9 +10,6 @@ const Post = props => {
 	const users = props.users
 	const post = props.post
 
-	// jos haluat erilaisen post kun vaikka ensimmäinen niin muokkaa tuota reply ja kikkaile jotenkin
-	// tällä hetkellä se menee --> Postlist --> Post --> CommentList --> Post ---> infinity
-	// en tiiä onko viable mut hei works lol
 	const usernamelol = (users, postid) => {
 		const user = users.find(user => user.posts.find(post => post.id === postid))
 		return user === undefined ? 'Anon' : user.username
