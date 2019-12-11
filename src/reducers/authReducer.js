@@ -3,7 +3,8 @@ import loginService from '../services/users'
 
 const initialState = {
 	token: null,
-	username: null
+	username: null,
+	judgeDredd: false
 }
 
 export const logout = () => {

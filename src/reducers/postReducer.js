@@ -27,6 +27,15 @@ export const dislike = a => {
 		})
 	}
 }
+export const purge = a => {
+	return async dispatch => {
+		await postService.remove(a)
+		dispatch({
+			type: 'PURGE',
+			data: a
+		})
+	}
+}
 
 export const initializePosts = () => {
 	return async dispatch => {
@@ -54,6 +63,7 @@ const postReducer = (state = [], action) => {
 			return state.concat(action.data)
 		}
 		case 'INIT_POSTS': {
+			console.log(state)
 			return action.data
 		}
 		case 'LIKE': {
@@ -70,6 +80,10 @@ const postReducer = (state = [], action) => {
 		}
 		case 'NEW_COMMENT': {
 			return state.concat(action.data)
+		}
+		case 'PURGE': {
+			const index = state.findIndex(data => data.id === action.data)
+			return [...state.slice(0, index), ...state.slice(index + 1)]
 		}
 		default: {
 			return state
