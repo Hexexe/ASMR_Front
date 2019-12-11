@@ -14,7 +14,7 @@ const Post = props => {
 	// tällä hetkellä se menee --> Postlist --> Post --> CommentList --> Post ---> infinity
 	// en tiiä onko viable mut hei works lol
 	const usernamelol = (users, postid) => {
-		const user = users.find(user => user.posts.find(post => post.id === postid))
+		const user = users.find(user => user.posts.find(post => post === postid))
 		return user === undefined ? 'Anon' : user.username
 	}
 	return (
