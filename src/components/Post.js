@@ -16,37 +16,37 @@ const Post = props => {
 		return user === undefined ? 'Anon' : user.username
 	}
 	return (
-		<div className='media surface mb-3 jumbotron' key={post.id}>
-			<div className='media-body card-body inline'>
+		<div className='media surface mb-3 jumbotron ' key={post.id}>
+			<div className='media-body inline pt-3'>
 				{/* Käyttäjän kuva */}
 				<img
 					src={require('../images/avatars/wojak.png')}
-					className='media-object imageToLeft'
+					className='media-object imageToLeft '
 					alt='kuva'
 					width='64'
 					height='64'
 				/>
 				{/* Käyttäjän nimi (anon jos tyhjä) */}
-				<h2 className='media-heading'>{`${usernamelol(users, post.id)}`}</h2>
+				<h2 className='media-heading '>{`${usernamelol(users, post.id)}`}</h2>
 				<br />
 				{/* postauksen sisältö (jos kuva niin kuva myös)  */}
-				<p>{post.content}</p>
+				<p className='commentControl pr-3'>{post.content}</p>
 				{post.postImg === null ? null : (
 					<a href={post.postImg.url} target='_blank' rel='noopener noreferrer'>
 						<img
-							className='mb-3 imageStyling'
+							className='mb-3 imageStyling commentControl'
 							src={post.postImg.url}
 							alt='kuva'
 						/>
 					</a>
 				)}
 				{/* päiväys  */}
-				<div className='text-muted '>
-					<small>{dateFormat(post.date, 'HH.MM - d. mmmm yyyy')}</small>
+				<div className='text-muted commentControl'>
+					<small>{dateFormat(post.date, 'HH:MM - d. mmmm yyyy')}</small>
 				</div>
 				{/* Like/Dislike  */}
 				<div className='horizontalLineUp'></div>
-				<div className='listStyling '>
+				<div className='listStyling commentControl'>
 					<ul className=''>
 						<li className=''>
 							{post.wp}
@@ -75,17 +75,22 @@ const Post = props => {
 					</ul>
 				</div>
 				<div className='horizontalLineDown'></div>
-				{props.user === null ? '' : <CommentForm id={post.id} />}
-				{auth.judgeDredd === true ? (
-					<Button
-						className='primary text-dark inline'
-						onClick={() => props.purge(post)}
-					>
-						Purge
-					</Button>
-				) : null}
+				<div
+					className='btn-group commentControl'
+					role='group'
+					aria-label='Basic example'
+				>
+					{props.user === null ? '' : <CommentForm id={post.id} />}
+					{auth.judgeDredd === true ? (
+						<button
+							className='btn primary text-dark ml-3 mt-3'
+							onClick={() => props.purge(post)}
+						>
+							Purge
+						</button>
+					) : null}
+				</div>
 
-				<br />
 				<div className='media'>
 					<div className='media-body card-body inline'>
 						<CommentList id={post.id} />

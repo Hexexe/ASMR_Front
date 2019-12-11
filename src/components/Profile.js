@@ -31,7 +31,11 @@ const Profile = props => {
 	return (
 		<div>
 			<img
-				src={require('../images/avatars/wojak.png')}
+				src={
+					user.name === null
+						? require(`${user.avatar}`)
+						: require('../images/avatars/wojak.png')
+				}
 				className=' '
 				alt='kuva'
 				width='64'
@@ -60,8 +64,8 @@ const Profile = props => {
 							<div className='col-sm-10'>
 								<input
 									type='text'
-									className='form-control-plaintext textcolor'
-									placeholder='content'
+									className='form-control textcolor'
+									defaultValue={usernamelol(users)}
 									name='content'
 								></input>
 							</div>
@@ -70,7 +74,11 @@ const Profile = props => {
 							<label className='col-sm-2 col-form-label'>Avatar:</label>
 							<div className='col-sm-10'>
 								<img
-									src={require('../images/avatars/wojak.png')}
+									src={
+										user.name === null
+											? require(`${user.avatar}`)
+											: require('../images/avatars/wojak.png')
+									}
 									className=' '
 									alt='kuva'
 									width='64'

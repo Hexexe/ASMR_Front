@@ -5,15 +5,6 @@ import { connect } from 'react-redux'
 import useForm from 'react-hook-form'
 
 const RegisterForm = props => {
-	/* 	const createUserN = async e => {
-		e.preventDefault()
-		const username = e.target.username.value
-		const password = e.target.password.value
-		e.target.username.value = ''
-		e.target.password.value = ''
-		props.createUser({ username, password })
-	} */
-
 	const createUser2 = async data => {
 		const username = data.username
 		const password = data.password

@@ -25,10 +25,18 @@ const CommentForm = props => {
 
 	return (
 		<div>
-			<Button className='primary text-dark' onClick={toggle}>
+			<button
+				type='button'
+				className='btn primary text-dark mt-3'
+				onClick={toggle}
+			>
 				Comment
-			</Button>
-			<Modal isOpen={modal} toggle={toggle} className='surface textcolor border-dark customForm'>
+			</button>
+			<Modal
+				isOpen={modal}
+				toggle={toggle}
+				className='surface textcolor border-dark customForm'
+			>
 				<ModalBody className='surface'>
 					<Form onSubmit={addCommentN} encType='multipart/form-data'>
 						<div>
@@ -72,5 +80,8 @@ const mapStateToProps = state => {
 	}
 }
 const mapDispatchToProps = { addComment }
-const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(CommentForm)
+const ConnectedComments = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(CommentForm)
 export default ConnectedComments
