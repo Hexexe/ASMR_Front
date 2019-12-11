@@ -2,19 +2,17 @@ import React from 'react'
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
-import { like, dislike } from '../reducers/postReducer'
+import { like, dislike, purge } from '../reducers/postReducer'
+import { Button, Modal, ModalBody, Input, Label } from 'reactstrap'
 const dateFormat = require('dateformat')
-let lol = 0
 
 const Post = props => {
 	const users = props.users
 	const post = props.post
+	const auth = props.auth
 
-	// jos haluat erilaisen post kun vaikka ensimmäinen niin muokkaa tuota reply ja kikkaile jotenkin
-	// tällä hetkellä se menee --> Postlist --> Post --> CommentList --> Post ---> infinity
-	// en tiiä onko viable mut hei works lol
 	const usernamelol = (users, postid) => {
-		const user = users.find(user => user.posts.find(post => post.id === postid))
+		const user = users.find(user => user.posts.find(post => post === postid))
 		return user === undefined ? 'Anon' : user.username
 	}
 	return (
@@ -66,9 +64,13 @@ const Post = props => {
 								onClick={() => props.dislike(post)}
 							/>
 						</li>
-						{console.log(lol++)}
 						{/* Tästä pitäs aueta comment form  */}
 						<li>{props.user === null ? '' : <CommentForm id={post.id} />}</li>
+						{auth.judgeDredd === true ? (
+							<Button className='primary text-dark' onClick={() => props.purge(post.id)}>
+								Purge
+							</Button>
+						) : null}
 					</ul>
 				</div>
 				<div className='horizontalLineDown'></div>
@@ -81,9 +83,10 @@ const Post = props => {
 const mapStateToProps = state => {
 	return {
 		posts: state.posts,
-		users: state.users
+		users: state.users,
+		auth: state.auth
 	}
 }
-const mapDispatchToProps = { like, dislike }
+const mapDispatchToProps = { like, dislike, purge }
 const ConnectedPosts = connect(mapStateToProps, mapDispatchToProps)(Post)
 export default ConnectedPosts
