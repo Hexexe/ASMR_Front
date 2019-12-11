@@ -35,7 +35,12 @@ const LoginForm = props => {
 									<input className='form-control mr-sm-0 ' placeholder='username' name='username' />
 								</div>
 								<div className='col'>
-									<input className='form-control mr-sm-0' placeholder='password' name='password' />
+									<input
+										className='form-control mr-sm-0'
+										type='password'
+										placeholder='password'
+										name='password'
+									/>
 								</div>
 								<div className='col'>
 									<button type='submit' className='btn primary'>

@@ -17,8 +17,9 @@ const create = async newObject => {
 	return response.data
 }
 const remove = async id => {
-	const promise = await axios.delete(`${posts}/${id}`)
-	return promise.then(response => response.data)
+	const config = { headers: { Authorization: token } }
+	const response = await axios.delete(`${posts}/${id}`, config)
+	return response.data
 }
 const update = async post => {
 	const config = { headers: { Authorization: token } }
