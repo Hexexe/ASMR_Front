@@ -3,7 +3,7 @@ import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
 import { like, dislike, purge } from '../reducers/postReducer'
-import { Button, Modal, ModalBody, Input, Label } from 'reactstrap'
+import { Button } from 'reactstrap'
 const dateFormat = require('dateformat')
 
 const Post = props => {
@@ -17,7 +17,7 @@ const Post = props => {
 	}
 	return (
 		<div className='media surface mb-3 jumbotron' key={post.id}>
-			<div className='media-body commentControl inline'>
+			<div className='media-body card-body inline'>
 				{/* Käyttäjän kuva */}
 				<img
 					src={require('../images/avatars/wojak.png')}
@@ -32,7 +32,13 @@ const Post = props => {
 				{/* postauksen sisältö (jos kuva niin kuva myös)  */}
 				<p>{post.content}</p>
 				{post.postImg === null ? null : (
-					<img className='mb-3 imageStyling' src={post.postImg.url} alt='kuva' />
+					<a href={post.postImg.url} target='_blank' rel='noopener noreferrer'>
+						<img
+							className='mb-3 imageStyling'
+							src={post.postImg.url}
+							alt='kuva'
+						/>
+					</a>
 				)}
 				{/* päiväys  */}
 				<div className='text-muted '>
@@ -65,17 +71,26 @@ const Post = props => {
 							/>
 						</li>
 						{/* Tästä pitäs aueta comment form  */}
-						<li>{props.user === null ? '' : <CommentForm id={post.id} />}</li>
-						{auth.judgeDredd === true ? (
-							<Button className='primary text-dark' onClick={() => props.purge(post)}>
-								Purge
-							</Button>
-						) : null}
+						<li></li>
 					</ul>
 				</div>
 				<div className='horizontalLineDown'></div>
+				{props.user === null ? '' : <CommentForm id={post.id} />}
+				{auth.judgeDredd === true ? (
+					<Button
+						className='primary text-dark inline'
+						onClick={() => props.purge(post)}
+					>
+						Purge
+					</Button>
+				) : null}
+
 				<br />
-				<CommentList id={post.id} />
+				<div className='media'>
+					<div className='media-body card-body inline'>
+						<CommentList id={post.id} />
+					</div>
+				</div>
 			</div>
 		</div>
 	)

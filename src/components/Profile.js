@@ -6,21 +6,27 @@ import { Modal, ModalBody } from 'reactstrap'
 
 const Profile = props => {
 	const id = props.id
-
+	const users = props.users
 	const user = JSON.parse(localStorage.getItem('currentUser'))
 
-	const updateProfile = async e => {
+	const addCommentN = async e => {
 		e.preventDefault()
 		const formData = new FormData()
+		formData.append('content', e.target.content.value)
 
-		formData.append('name', e.target.content.value)
-		formData.append('avatar', e.target.file.files[0])
 		formData.append('id', id)
 		props.addComment(formData)
-		e.target.content = ''
+		e.target.content.value = ''
 	}
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
+
+	const usernamelol = (users, postid) => {
+		const user = users.find(user => user.posts.find(post => post === postid))
+		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
+	}
+
+	//console.log(usernamelol(users))
 
 	return (
 		<div>
@@ -36,16 +42,27 @@ const Profile = props => {
 				<ModalBody className='surface'>
 					<h1 className=''>Profile</h1>
 
-					<form onSubmit={updateProfile} encType='multipart/form-data'>
+					<form onSubmit={addCommentN} encType='multipart/form-data'>
+						<div className='form-group row'>
+							<label className='col-sm-2 col-form-label'>Username:</label>
+							<div className='col-sm-10'>
+								<input
+									type='text'
+									name='username'
+									readOnly
+									className='form-control-plaintext textcolor'
+									value={`${user.username}`}
+								></input>
+							</div>
+						</div>
 						<div className='form-group row'>
 							<label className='col-sm-2 col-form-label'>Name:</label>
 							<div className='col-sm-10'>
 								<input
 									type='text'
-									name='name'
-									readOnly
 									className='form-control-plaintext textcolor'
-									value={`${user.username}`}
+									placeholder='content'
+									name='content'
 								></input>
 							</div>
 						</div>
@@ -67,30 +84,35 @@ const Profile = props => {
 							<div className=''></div>
 						</div>
 
-						<div className='row'>
-							<div className='column pl-3'>
+						<div className='row ml-2'>
+							<label>
+								<input type='radio' name='test' value='small'></input>
 								<img
 									src={require('../images/icon1.png')}
 									alt='male'
 									width='64'
 									height='64'
-									name='avatar'
+									name='file'
+									type='file'
+									value={require('../images/icon1.png')}
 								></img>
-							</div>
+							</label>
 
-							<div className='column pl-5'>
+							<label>
+								<input type='radio' name='test' value='big'></input>
 								<img
 									src={require('../images/icon2.png')}
 									alt='female'
 									width='64'
 									height='64'
 									name='avatar1'
+									value='../images/icon2.png'
 								></img>
-							</div>
+							</label>
 						</div>
-
-						<button>select</button>
-						<button className='ml-5'>select</button>
+						<button className='primary' type='submit'>
+							Submit
+						</button>
 					</form>
 				</ModalBody>
 			</Modal>

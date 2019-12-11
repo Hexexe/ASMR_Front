@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import RegisterForm from './RegisterForm'
 import { handleLogin } from '../reducers/authReducer'
 import { connect } from 'react-redux'
@@ -32,7 +31,11 @@ const LoginForm = props => {
 						<form className='form-inline ' onSubmit={handleLoginN}>
 							<div className='form-row'>
 								<div className='col'>
-									<input className='form-control mr-sm-0 ' placeholder='username' name='username' />
+									<input
+										className='form-control mr-sm-0 '
+										placeholder='username'
+										name='username'
+									/>
 								</div>
 								<div className='col'>
 									<input

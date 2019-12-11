@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ScrollAnimation from 'react-animate-on-scroll'
-import Post from './Post'
+import Reply from './Reply'
 
 const CommentList = props => {
 	const posts = props.posts
@@ -19,7 +19,7 @@ const CommentList = props => {
 				.filter(comment => comment.parentId === id)
 				.map(comment => (
 					<ScrollAnimation animateIn='fadeIn' key={comment.id}>
-						<Post post={comment} />
+						<Reply post={comment} />
 					</ScrollAnimation>
 				))}
 		</div>
