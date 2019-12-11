@@ -32,7 +32,7 @@ const Post = props => {
 				{/* postauksen sisältö (jos kuva niin kuva myös)  */}
 				<p>{post.content}</p>
 				{post.postImg === null ? null : (
-					<img className='mb-3 imageStyling' src={post.postImg} alt='kuva' />
+					<img className='mb-3 imageStyling' src={post.postImg.url} alt='kuva' />
 				)}
 				{/* päiväys  */}
 				<div className='text-muted '>
@@ -67,7 +67,7 @@ const Post = props => {
 						{/* Tästä pitäs aueta comment form  */}
 						<li>{props.user === null ? '' : <CommentForm id={post.id} />}</li>
 						{auth.judgeDredd === true ? (
-							<Button className='primary text-dark' onClick={() => props.purge(post.id)}>
+							<Button className='primary text-dark' onClick={() => props.purge(post)}>
 								Purge
 							</Button>
 						) : null}

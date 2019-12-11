@@ -82,7 +82,7 @@ const postReducer = (state = [], action) => {
 			return state.concat(action.data)
 		}
 		case 'PURGE': {
-			const index = state.findIndex(data => data.id === action.data)
+			const index = state.findIndex(data => data.id === action.data.id)
 			return [...state.slice(0, index), ...state.slice(index + 1)]
 		}
 		default: {
