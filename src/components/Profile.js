@@ -6,21 +6,16 @@ import { connect } from 'react-redux'
 import { Modal, ModalBody } from 'reactstrap'
 
 const Profile = props => {
-	const id = props.id
-
-	const name = props.auth
-	console.log(name)
-
 	const users = props.users
 	const user = JSON.parse(localStorage.getItem('currentUser'))
+	const currentUser = users ? users.find(u => (u.id = user.id)) : null
 
 	const updateTest = async e => {
 		e.preventDefault()
-		const formData = new FormData()
-		formData.append('content', e.target.content.value)
-		formData.append('id', id)
-		props.updateProfileTest(formData)
-		e.target.content.value = ''
+		const name = e.target.name.value
+		currentUser.name = name
+		props.updateProfileTest(currentUser)
+		e.target.name.value = ''
 	}
 
 	const [modal, setModal] = useState(false)
@@ -42,9 +37,7 @@ const Profile = props => {
 		<div>
 			<img
 				src={
-					user.name === null
-						? require(`${user.avatar}`)
-						: require('../images/avatars/wojak.png')
+					user.name === null ? require(`${user.avatar}`) : require('../images/avatars/wojak.png')
 				}
 				className=' '
 				alt='kuva'
@@ -76,7 +69,7 @@ const Profile = props => {
 									type='text'
 									className='form-control textcolor'
 									defaultValue={usernamelol(users)}
-									name='content'
+									name='name'
 								></input>
 							</div>
 						</div>

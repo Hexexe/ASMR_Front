@@ -53,11 +53,9 @@ const authReducer = (state = initialState, action) => {
 		}
 		case 'CHECKU': {
 			const pState = JSON.parse(localStorage.getItem('currentUser'))
-			console.log(state)
 			if (pState) {
 				postService.setToken(pState.token)
 				loginService.setToken(pState.token)
-				console.log(pState)
 				return pState
 			} else {
 				return initialState

@@ -29,9 +29,9 @@ export const initializeUsers = () => {
 	}
 }
 
-export const updateProfileTest = data => {
+export const updateProfileTest = a => {
 	return async dispatch => {
-		const users = await UserService.update(data)
+		const users = await UserService.update(a)
 		dispatch({
 			type: 'UPTEST',
 			data: users
