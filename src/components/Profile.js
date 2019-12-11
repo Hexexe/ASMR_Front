@@ -1,23 +1,28 @@
 import React, { useState } from 'react'
 //import PropTypes from 'prop-types'
-import { updateProfile } from '../reducers/userReducer'
+import { updateProfileTest } from '../reducers/userReducer'
+import { checkUser } from '../reducers/authReducer'
 import { connect } from 'react-redux'
 import { Modal, ModalBody } from 'reactstrap'
 
 const Profile = props => {
 	const id = props.id
+
+	const name = props.auth
+	console.log(name)
+
 	const users = props.users
 	const user = JSON.parse(localStorage.getItem('currentUser'))
 
-	const addCommentN = async e => {
+	const updateTest = async e => {
 		e.preventDefault()
 		const formData = new FormData()
 		formData.append('content', e.target.content.value)
-
 		formData.append('id', id)
-		props.addComment(formData)
+		props.updateProfileTest(formData)
 		e.target.content.value = ''
 	}
+
 	const [modal, setModal] = useState(false)
 	const toggle = () => setModal(!modal)
 
@@ -26,7 +31,12 @@ const Profile = props => {
 		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
 	}
 
-	//console.log(usernamelol(users))
+	const current = (users, postid) => {
+		const user = users.find(user => user.posts.find(post => post === postid))
+		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
+	}
+
+	//console.log('haha', user.id)
 
 	return (
 		<div>
@@ -46,7 +56,7 @@ const Profile = props => {
 				<ModalBody className='surface'>
 					<h1 className=''>Profile</h1>
 
-					<form onSubmit={addCommentN} encType='multipart/form-data'>
+					<form onSubmit={updateTest} encType='multipart/form-data'>
 						<div className='form-group row'>
 							<label className='col-sm-2 col-form-label'>Username:</label>
 							<div className='col-sm-10'>
@@ -135,9 +145,10 @@ const Profile = props => {
 } */
 const mapStateToProps = state => {
 	return {
-		users: state.users
+		users: state.users,
+		auth: state.auth
 	}
 }
-const mapDispatchToProps = { updateProfile }
+const mapDispatchToProps = { updateProfileTest, checkUser }
 const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(Profile)
 export default ConnectedComments

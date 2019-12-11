@@ -15,6 +15,8 @@ const CommentForm = props => {
 		const formData = new FormData()
 		formData.append('content', e.target.content.value)
 		formData.append('postImg', e.target.file.files[0])
+		console.log(id)
+
 		formData.append('id', id)
 		props.addComment(formData)
 		e.target.content.value = ''

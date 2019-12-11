@@ -4,7 +4,9 @@ import loginService from '../services/users'
 const initialState = {
 	token: null,
 	username: null,
-	judgeDredd: false
+	name: '',
+	judgeDredd: false,
+	id: null
 }
 
 export const logout = () => {
@@ -51,9 +53,11 @@ const authReducer = (state = initialState, action) => {
 		}
 		case 'CHECKU': {
 			const pState = JSON.parse(localStorage.getItem('currentUser'))
+			console.log(state)
 			if (pState) {
 				postService.setToken(pState.token)
 				loginService.setToken(pState.token)
+				console.log(pState)
 				return pState
 			} else {
 				return initialState

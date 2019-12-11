@@ -6,7 +6,6 @@ let token = null
 const setToken = newToken => {
 	token = `bearer ${newToken}`
 }
-
 const getAllUsers = async () => {
 	const response = await axios.get(usersC)
 	return response.data
@@ -23,10 +22,17 @@ const remove = async id => {
 	const promise = await axios.delete(`${usersC}/${id}`)
 	return promise.then(response => response.data)
 }
-const update = async post => {
+const update = async user => {
 	const config = { headers: { Authorization: token } }
-	const response = await axios.put(`${usersC}/${post.id}`, post, config)
+	const response = await axios.put(`${usersC}/${user.id}`, user, config)
 	return response.data
 }
 
-export default { getAllUsers, register, login, update, remove, setToken }
+export default {
+	getAllUsers,
+	register,
+	login,
+	update,
+	remove,
+	setToken
+}

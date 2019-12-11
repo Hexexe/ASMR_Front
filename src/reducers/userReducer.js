@@ -29,6 +29,16 @@ export const initializeUsers = () => {
 	}
 }
 
+export const updateProfileTest = data => {
+	return async dispatch => {
+		const users = await UserService.update(data)
+		dispatch({
+			type: 'UPTEST',
+			data: users
+		})
+	}
+}
+
 const userReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'NEW_USER':
@@ -36,6 +46,8 @@ const userReducer = (state = [], action) => {
 		case 'INIT_U':
 			return action.data
 		case 'UP':
+			return action.data
+		case 'UPTEST':
 			return action.data
 		default:
 			return state

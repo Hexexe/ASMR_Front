@@ -3,7 +3,6 @@ import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
 import { like, dislike, purge } from '../reducers/postReducer'
-import { Button } from 'reactstrap'
 const dateFormat = require('dateformat')
 
 const Post = props => {
