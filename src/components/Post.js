@@ -28,6 +28,7 @@ const Post = props => {
 				/>
 				{/* Käyttäjän nimi (anon jos tyhjä) */}
 				<h2 className='media-heading '>{`${usernamelol(users, post.id)}`}</h2>
+				<small className='text-muted'>{post.id}</small>
 				<br />
 				{/* postauksen sisältö (jos kuva niin kuva myös)  */}
 				<p className='commentControl pr-3'>{post.content}</p>

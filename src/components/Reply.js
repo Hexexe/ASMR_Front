@@ -24,12 +24,12 @@ const Reply = props => {
 					{/* Käyttäjän nimi (anon jos tyhjä) */}
 					<div clear='both'>
 						<h4 className='media-heading commentControl'>
-							{`${usernamelol(users, post.id)} replies `}
-
-							<small className='text-muted'>
-								{dateFormat(post.date, 'HH:MM - d.m.yy')}
+							{`${usernamelol(users, post.id)} replies to `}
+							<small className='text-muted commentControl'>
+								{post.parentId}
 							</small>
 						</h4>
+						<small className='text-muted commentControl'>{post.id}</small>
 					</div>
 
 					<br />
@@ -42,6 +42,9 @@ const Reply = props => {
 							alt='kuva'
 						/>
 					)}
+					<small className='text-muted commentControl'>
+						{dateFormat(post.date, 'HH:MM - d.m.yy')}
+					</small>
 					{/* päiväys  */}
 
 					{/* Like/Dislike  */}
