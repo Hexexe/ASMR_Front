@@ -1,5 +1,7 @@
 import postService from '../services/posts'
 
+const initialState = []
+
 export const addPost = a => {
 	return async dispatch => {
 		const newPost = await postService.create(a)
@@ -57,14 +59,13 @@ export const addComment = fd => {
 	}
 }
 
-const postReducer = (state = [], action) => {
+const postReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'NEW_POST': {
-			console.log(action.data)
 			return state.concat(action.data)
 		}
 		case 'INIT_POSTS': {
-			return action.data
+			return state.concat(action.data)
 		}
 		case 'LIKE': {
 			const id = action.data.id

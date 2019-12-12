@@ -9,7 +9,6 @@ const Post = props => {
 	const users = props.users
 	const post = props.post
 	const auth = props.auth
-	console.log(users)
 	const user = users === undefined ? null : users.find(user => user.posts.find(p => p === post.id))
 
 	return (
@@ -17,13 +16,15 @@ const Post = props => {
 			<div className='media-body inline pt-3'>
 				{/* Käyttäjän kuva */}
 				<img
-					src={user !== null ? user.avatar : require('../images/profile.png')}
+					src={user === undefined ? require('../images/avatars/wojak.png') : user.avatar}
 					className='media-object imageToLeft '
 					alt='kuva'
 					width='64'
 					height='64'
 				/>
-				<h2 className='media-heading '>{`${user !== null ? user.name : 'Anon'}`}</h2>
+				<h2 className='media-heading '>{`${
+					user === undefined || user.name.length === 0 ? 'Anon' : user.name
+				}`}</h2>
 				<small className='text-muted'>{post.id}</small>
 				<br />
 				{/* postauksen sisältö (jos kuva niin kuva myös)  */}
@@ -85,6 +86,7 @@ const Post = props => {
 		</div>
 	)
 }
+
 const mapStateToProps = state => {
 	return {
 		posts: state.posts,

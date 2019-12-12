@@ -10,10 +10,7 @@ const LogoutForm = props => (
 			<div className='btn-group'>
 				<div className='navbar-nav'>
 					<Profile />
-					<button
-						onClick={() => props.logout()}
-						className='btn secondary btn-space-left'
-					>
+					<button onClick={() => props.logout()} className='btn secondary btn-space-left'>
 						logout
 					</button>
 				</div>

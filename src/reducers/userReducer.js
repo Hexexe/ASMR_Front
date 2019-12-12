@@ -1,5 +1,7 @@
 import UserService from '../services/users'
 
+const initialState = []
+
 export const createUser = a => {
 	return async dispatch => {
 		const newUser = await UserService.register(a)
@@ -30,12 +32,12 @@ export const updateProfile = a => {
 	}
 }
 
-const userReducer = (state = [], action) => {
+const userReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'NEW_USER':
 			return state.concat(action.data)
 		case 'INIT_U':
-			return action.data
+			return state.concat(action.data)
 		case 'UP': {
 			console.log(action.data)
 			const id = action.data.id

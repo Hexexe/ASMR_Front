@@ -53,7 +53,7 @@ const Profile = props => {
 									name='username'
 									readOnly
 									className='form-control-plaintext textcolor'
-									value={`${user.username}`}
+									value={`${user !== null ? user.username : 'Anon'}`}
 								></input>
 							</div>
 						</div>
@@ -97,7 +97,7 @@ const Profile = props => {
 								></input>
 								<img
 									src={require('../images/avatars/pepe.png')}
-									alt='male'
+									alt='pepe'
 									width='64'
 									height='64'
 									name='file'
@@ -114,7 +114,23 @@ const Profile = props => {
 								></input>
 								<img
 									src={require('../images/avatars/wojak.png')}
-									alt='female'
+									alt='feels'
+									width='64'
+									height='64'
+									name='avatar1'
+								></img>
+							</label>
+							<label>
+								<input
+									type='radio'
+									name='test'
+									checked={newState.selectedOption === 'option1'}
+									onChange={handleOptionChange}
+									value='https://res.cloudinary.com/dwukdho7x/image/upload/v1576130379/avatars/gold_goprez.png'
+								></input>
+								<img
+									src={require('../images/avatars/gold.png')}
+									alt='lmao'
 									width='64'
 									height='64'
 									name='avatar1'

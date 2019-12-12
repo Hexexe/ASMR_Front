@@ -11,35 +11,42 @@ import LogoutForm from './components/LogoutForm'
 import CookieConsent from 'react-cookie-consent'
 
 const App = props => {
+	const yoink = async () => {
+		await props.checkUser()
+		await props.initializeUsers()
+		await props.initializePosts()
+	}
 	useEffect(() => {
-		props.checkUser()
-		props.initializeUsers()
-		props.initializePosts()
-	}, [props.posts.length, props.users.length])
+		yoink()
+	}, [])
 
-	//yaysdfsdf
-	return (
-		<div className='textcolor'>
-			{props.auth.username === null ? <LoginForm /> : <LogoutForm />}
-			<br />
-			<br />
-			<img src={require('./images/logo.png')} className='' alt='kuva' width='100%' />
-			<div className='mx-auto'>
-				{props.auth.username === null && props.auth ? <LoginForm /> : <PostForm />}
-				<h1>Posts</h1>
+	const users = props.users
+	const posts = props.posts
+	if (users && posts) {
+		//yaysdfsdf
+		return (
+			<div className='textcolor'>
+				{props.auth.username === null ? <LoginForm /> : <LogoutForm />}
+				<br />
+				<br />
+				<img src={require('./images/logo.png')} className='' alt='kuva' width='100%' />
+				<div className='mx-auto'>
+					{props.auth.username === null && props.auth ? <LoginForm /> : <PostForm />}
+					<h1>Posts</h1>
+				</div>
+				<PostList />
+				<div className='row justify-content-center' />
+				<CookieConsent
+					location='bottom'
+					buttonText='Yes, I understand'
+					buttonStyle={{ background: '#bb86fc', color: 'white' }}
+				>
+					In order to optimize the website and to continuously improve ASMR, we collect your data.{' '}
+				</CookieConsent>
+				<Footer />
 			</div>
-			<PostList />
-			<div className='row justify-content-center' />
-			<CookieConsent
-				location='bottom'
-				buttonText='Yes, I understand'
-				buttonStyle={{ background: '#bb86fc', color: 'white' }}
-			>
-				In order to optimize the website and to continuously improve ASMR, we collect your data.{' '}
-			</CookieConsent>
-			<Footer />
-		</div>
-	)
+		)
+	}
 }
 const mapStateToProps = state => ({
 	posts: state.posts,

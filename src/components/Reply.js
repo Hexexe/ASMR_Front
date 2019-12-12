@@ -9,7 +9,7 @@ const Reply = props => {
 	const users = props.users
 	const post = props.post
 	const auth = props.auth
-	const user = users.find(user => user.posts.find(p => p === post.id))
+	const user = users === undefined ? null : users.find(user => user.posts.find(p => p === post.id))
 
 	return (
 		<div>
@@ -17,7 +17,7 @@ const Reply = props => {
 				<div className='media-body inline background testi2'>
 					{/* Käyttäjän kuva */}
 					<img
-						src={user ? user.avatar : require('../images/profile.png')}
+						src={user === undefined ? require('../images/avatars/wojak.png') : user.avatar}
 						className='media-object imageToLeft '
 						alt='kuva'
 						width='64'
@@ -26,7 +26,7 @@ const Reply = props => {
 					{/* Käyttäjän nimi (anon jos tyhjä) */}
 					<div clear='both'>
 						<h4 className='media-heading commentControl'>
-							{`${user.name.length > 0 ? user.name : 'Anon'} replies to `}
+							{`${user === undefined || user.name.length === 0 ? 'Anon' : user.name} replies to `}
 							<small className='text-muted commentControl'>{post.parentId}</small>
 						</h4>
 						<small className='text-muted commentControl'>{post.id}</small>
