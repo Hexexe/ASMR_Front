@@ -65,7 +65,7 @@ const postReducer = (state = initialState, action) => {
 			return state.concat(action.data)
 		}
 		case 'INIT_POSTS': {
-			return state.concat(action.data)
+			return action.data
 		}
 		case 'LIKE': {
 			const id = action.data.id

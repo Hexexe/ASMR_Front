@@ -9,7 +9,8 @@ const Reply = props => {
 	const users = props.users
 	const post = props.post
 	const auth = props.auth
-	const user = users === undefined ? null : users.find(user => user.posts.find(p => p === post.id))
+	const user =
+		users === undefined ? undefined : users.find(user => user.posts.find(p => p === post.id))
 
 	return (
 		<div>

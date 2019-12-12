@@ -37,7 +37,7 @@ const userReducer = (state = initialState, action) => {
 		case 'NEW_USER':
 			return state.concat(action.data)
 		case 'INIT_U':
-			return state.concat(action.data)
+			return action.data
 		case 'UP': {
 			console.log(action.data)
 			const id = action.data.id
