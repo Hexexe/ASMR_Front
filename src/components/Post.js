@@ -1,6 +1,7 @@
 import React from 'react'
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
+import Linkify from 'react-linkify'
 import { connect } from 'react-redux'
 import { like, dislike, purge } from '../reducers/postReducer'
 const dateFormat = require('dateformat')
@@ -28,7 +29,9 @@ const Post = props => {
 				<small className='text-muted'>{post.id}</small>
 				<br />
 				{/* postauksen sisältö (jos kuva niin kuva myös)  */}
-				<p className='commentControl pr-3'>{post.content}</p>
+				<Linkify>
+					<p className='commentControl pr-3'>{post.content}</p>
+				</Linkify>
 				{post.postImg === null ? null : (
 					<a href={post.postImg.url} target='_blank' rel='noopener noreferrer'>
 						<img className='mb-3 imageStyling commentControl' src={post.postImg.url} alt='kuva' />

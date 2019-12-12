@@ -1,6 +1,7 @@
 import React from 'react'
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
+import Linkify from 'react-linkify'
 import { connect } from 'react-redux'
 import { like, dislike, purge } from '../reducers/postReducer'
 const dateFormat = require('dateformat')
@@ -35,7 +36,9 @@ const Reply = props => {
 
 					<br />
 					{/* postauksen sisältö (jos kuva niin kuva myös)  */}
-					<p className='commentControl'>{post.content}</p>
+					<Linkify>
+						<p className='commentControl'>{post.content}</p>
+					</Linkify>
 					{post.postImg === null ? null : (
 						<img className='mb-3 imageStyling' src={post.postImg.url} alt='kuva' />
 					)}
