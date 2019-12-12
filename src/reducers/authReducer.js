@@ -6,7 +6,8 @@ const initialState = {
 	username: null,
 	name: '',
 	judgeDredd: false,
-	id: null
+	id: null,
+	avatar: null
 }
 
 export const logout = () => {

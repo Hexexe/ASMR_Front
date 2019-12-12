@@ -3,6 +3,7 @@ import UserService from '../services/users'
 export const createUser = a => {
 	return async dispatch => {
 		const newUser = await UserService.register(a)
+		console.log(a)
 		dispatch({
 			type: 'NEW_USER',
 			data: newUser
@@ -10,15 +11,6 @@ export const createUser = a => {
 	}
 }
 
-export const updateProfile = () => {
-	return async dispatch => {
-		const users = await UserService.getAllUsers()
-		dispatch({
-			type: 'UP',
-			data: users
-		})
-	}
-}
 export const initializeUsers = () => {
 	return async dispatch => {
 		const users = await UserService.getAllUsers()
@@ -29,11 +21,11 @@ export const initializeUsers = () => {
 	}
 }
 
-export const updateProfileTest = a => {
+export const updateProfile = a => {
 	return async dispatch => {
 		const users = await UserService.update(a)
 		dispatch({
-			type: 'UPTEST',
+			type: 'UP',
 			data: users
 		})
 	}
@@ -46,8 +38,6 @@ const userReducer = (state = [], action) => {
 		case 'INIT_U':
 			return action.data
 		case 'UP':
-			return action.data
-		case 'UPTEST':
 			return action.data
 		default:
 			return state

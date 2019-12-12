@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 //import PropTypes from 'prop-types'
-import { updateProfileTest } from '../reducers/userReducer'
+import { updateProfile } from '../reducers/userReducer'
 import { checkUser } from '../reducers/authReducer'
 import { connect } from 'react-redux'
 import { Modal, ModalBody } from 'reactstrap'
@@ -9,32 +9,20 @@ const Profile = props => {
 	const users = props.users
 	const user = JSON.parse(localStorage.getItem('currentUser'))
 	const [newState, setNewRadio] = useState('')
+	const [modal, setModal] = useState(false)
+	const toggle = () => setModal(!modal)
+	const findCurrent = users => users.find(u => u.username === user.username)
 
-	const updateTest = async e => {
+	const updateP = e => {
 		e.preventDefault()
-		const currentUser = users.find(u => (u.username = user.username))
-		console.log(currentUser)
+		const currentUser = findCurrent(users)
 		const name = e.target.name.value
 		currentUser.name = name
 		currentUser.avatar = newState.selectedOption
-		props.updateProfileTest(currentUser)
+		props.updateProfile(currentUser)
 		e.target.name.value = ''
+		setModal(!modal)
 	}
-
-	const [modal, setModal] = useState(false)
-	const toggle = () => setModal(!modal)
-
-	/* 	const usernamelol = (users, postid) => {
-		const user = users.find(user => user.posts.find(post => post === postid))
-		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
-	}
-
-	const current = (users, postid) => {
-		const user = users.find(user => user.posts.find(post => post === postid))
-		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
-	} */
-
-	//console.log('haha', user.id)
 
 	const handleOptionChange = a => {
 		setNewRadio({
@@ -42,20 +30,10 @@ const Profile = props => {
 		})
 	}
 
-	const epicSubmit = e => {
-		e.preventDefault()
-
-		console.log('You have selected:', newState.selectedOption)
-	}
-
 	return (
 		<div>
 			<img
-				src={
-					user.name === null
-						? require(`${user.avatar}`)
-						: require('../images/avatars/wojak.png')
-				}
+				src={require('../images/profile.png')}
 				className=' '
 				alt='kuva'
 				width='64'
@@ -66,7 +44,7 @@ const Profile = props => {
 				<ModalBody className='surface'>
 					<h1 className=''>Profile</h1>
 
-					<form onSubmit={updateTest} encType='multipart/form-data'>
+					<form onSubmit={updateP} encType='multipart/form-data'>
 						<div className='form-group row'>
 							<label className='col-sm-2 col-form-label'>Username:</label>
 							<div className='col-sm-10'>
@@ -94,11 +72,7 @@ const Profile = props => {
 							<label className='col-sm-2 col-form-label'>Avatar:</label>
 							<div className='col-sm-10'>
 								<img
-									src={
-										user.name === null
-											? require(`${user.avatar}`)
-											: require('../images/avatars/wojak.png')
-									}
+									src={user !== null ? user.avatar : require('../images/avatars/wojak.png')}
 									className=' '
 									alt='kuva'
 									width='64'
@@ -119,10 +93,10 @@ const Profile = props => {
 									name='test'
 									checked={newState.selectedOption === 'option1'}
 									onChange={handleOptionChange}
-									value='../images/icon1.png'
+									value='https://res.cloudinary.com/dwukdho7x/image/upload/v1576116862/avatars/pepe_yaurvm.png'
 								></input>
 								<img
-									src={require('../images/icon1.png')}
+									src={require('../images/avatars/pepe.png')}
 									alt='male'
 									width='64'
 									height='64'
@@ -136,10 +110,10 @@ const Profile = props => {
 									name='test'
 									checked={newState.selectedOption === 'option1'}
 									onChange={handleOptionChange}
-									value='../images/icon2.png'
+									value='https://res.cloudinary.com/dwukdho7x/image/upload/v1576116861/avatars/wojak_io3pi5.png'
 								></input>
 								<img
-									src={require('../images/icon2.png')}
+									src={require('../images/avatars/wojak.png')}
 									alt='female'
 									width='64'
 									height='64'
@@ -168,6 +142,6 @@ const mapStateToProps = state => {
 		auth: state.auth
 	}
 }
-const mapDispatchToProps = { updateProfileTest, checkUser }
+const mapDispatchToProps = { updateProfile, checkUser }
 const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(Profile)
 export default ConnectedComments

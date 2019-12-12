@@ -15,11 +15,10 @@ const CommentForm = props => {
 		const formData = new FormData()
 		formData.append('content', e.target.content.value)
 		formData.append('postImg', e.target.file.files[0])
-		console.log(id)
-
 		formData.append('id', id)
 		props.addComment(formData)
 		e.target.content.value = ''
+		e.target.file.value = null
 	}
 
 	const [modal, setModal] = useState(false)
@@ -27,18 +26,10 @@ const CommentForm = props => {
 
 	return (
 		<div>
-			<button
-				type='button'
-				className='btn primary text-dark mt-3'
-				onClick={toggle}
-			>
+			<button type='button' className='btn primary text-dark mt-3' onClick={toggle}>
 				Comment
 			</button>
-			<Modal
-				isOpen={modal}
-				toggle={toggle}
-				className='surface textcolor border-dark customForm'
-			>
+			<Modal isOpen={modal} toggle={toggle} className='surface textcolor border-dark customForm'>
 				<ModalBody className='surface'>
 					<Form onSubmit={addCommentN} encType='multipart/form-data'>
 						<div>
@@ -82,8 +73,5 @@ const mapStateToProps = state => {
 	}
 }
 const mapDispatchToProps = { addComment }
-const ConnectedComments = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(CommentForm)
+const ConnectedComments = connect(mapStateToProps, mapDispatchToProps)(CommentForm)
 export default ConnectedComments

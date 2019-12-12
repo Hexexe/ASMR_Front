@@ -60,6 +60,7 @@ export const addComment = fd => {
 const postReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'NEW_POST': {
+			console.log(action.data)
 			return state.concat(action.data)
 		}
 		case 'INIT_POSTS': {

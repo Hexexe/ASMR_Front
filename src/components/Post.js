@@ -9,35 +9,27 @@ const Post = props => {
 	const users = props.users
 	const post = props.post
 	const auth = props.auth
+	const user = users ? users.find(user => user.posts.find(post => post === post.id)) : null
 
-	const usernamelol = (users, postid) => {
-		const user = users.find(user => user.posts.find(post => post === postid))
-		return user === undefined ? 'Anon' : user.username
-	}
 	return (
 		<div className='media surface mb-3 jumbotron ' key={post.id}>
 			<div className='media-body inline pt-3'>
 				{/* Käyttäjän kuva */}
 				<img
-					src={require('../images/avatars/wojak.png')}
+					src={user ? user.avatar : null}
 					className='media-object imageToLeft '
 					alt='kuva'
 					width='64'
 					height='64'
 				/>
-				{/* Käyttäjän nimi (anon jos tyhjä) */}
-				<h2 className='media-heading '>{`${usernamelol(users, post.id)}`}</h2>
+				<h2 className='media-heading '>{`${user ? user.name : null}`}</h2>
 				<small className='text-muted'>{post.id}</small>
 				<br />
 				{/* postauksen sisältö (jos kuva niin kuva myös)  */}
 				<p className='commentControl pr-3'>{post.content}</p>
 				{post.postImg === null ? null : (
 					<a href={post.postImg.url} target='_blank' rel='noopener noreferrer'>
-						<img
-							className='mb-3 imageStyling commentControl'
-							src={post.postImg.url}
-							alt='kuva'
-						/>
+						<img className='mb-3 imageStyling commentControl' src={post.postImg.url} alt='kuva' />
 					</a>
 				)}
 				{/* päiväys  */}
@@ -75,22 +67,14 @@ const Post = props => {
 					</ul>
 				</div>
 				<div className='horizontalLineDown'></div>
-				<div
-					className='btn-group commentControl'
-					role='group'
-					aria-label='Basic example'
-				>
+				<div className='btn-group commentControl' role='group' aria-label='Basic example'>
 					{props.user === null ? '' : <CommentForm id={post.id} />}
 					{auth.judgeDredd === true ? (
-						<button
-							className='btn primary text-dark ml-3 mt-3'
-							onClick={() => props.purge(post)}
-						>
+						<button className='btn primary text-dark ml-3 mt-3' onClick={() => props.purge(post)}>
 							Purge
 						</button>
 					) : null}
 				</div>
-
 				<div className='media'>
 					<div className='media-body card-body inline'>
 						<CommentList id={post.id} />

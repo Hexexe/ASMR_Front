@@ -3,7 +3,6 @@ import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
 import { like, dislike, purge } from '../reducers/postReducer'
-import { Button } from 'reactstrap'
 const dateFormat = require('dateformat')
 
 const Reply = props => {
@@ -13,7 +12,7 @@ const Reply = props => {
 
 	const usernamelol = (users, postid) => {
 		const user = users.find(user => user.posts.find(post => post === postid))
-		return user === undefined ? 'Anon' : user.username
+		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
 	}
 	return (
 		<div>
@@ -24,10 +23,8 @@ const Reply = props => {
 					{/* Käyttäjän nimi (anon jos tyhjä) */}
 					<div clear='both'>
 						<h4 className='media-heading commentControl'>
-							{`${usernamelol(users, post.id)} replies to `}
-							<small className='text-muted commentControl'>
-								{post.parentId}
-							</small>
+							{`${users === undefined ? null : usernamelol(users, post.id)} replies to `}
+							<small className='text-muted commentControl'>{post.parentId}</small>
 						</h4>
 						<small className='text-muted commentControl'>{post.id}</small>
 					</div>
@@ -36,11 +33,7 @@ const Reply = props => {
 					{/* postauksen sisältö (jos kuva niin kuva myös)  */}
 					<p className='commentControl'>{post.content}</p>
 					{post.postImg === null ? null : (
-						<img
-							className='mb-3 imageStyling'
-							src={post.postImg.url}
-							alt='kuva'
-						/>
+						<img className='mb-3 imageStyling' src={post.postImg.url} alt='kuva' />
 					)}
 					<small className='text-muted commentControl'>
 						{dateFormat(post.date, 'HH:MM - d.m.yy')}
@@ -77,17 +70,10 @@ const Reply = props => {
 						</ul>
 					</div>
 					<div className='horizontalLineDown'></div>
-					<div
-						className='btn-group ml-3'
-						role='group'
-						aria-label='Basic example'
-					>
+					<div className='btn-group ml-3' role='group' aria-label='Basic example'>
 						{props.user === null ? '' : <CommentForm id={post.id} />}
 						{auth.judgeDredd === true ? (
-							<button
-								className='btn primary text-dark ml-3 mt-1'
-								onClick={() => props.purge(post)}
-							>
+							<button className='btn primary text-dark ml-3 mt-1' onClick={() => props.purge(post)}>
 								Purge
 							</button>
 						) : null}

@@ -11,6 +11,7 @@ const PostForm = props => {
 		formData.append('postImg', e.target.file.files[0])
 		props.addPost(formData)
 		e.target.content.value = ''
+		e.target.file.value = null
 	}
 	return (
 		<div className='col-xl-6 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4'>
