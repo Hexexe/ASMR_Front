@@ -8,6 +8,7 @@ import { Modal, ModalBody } from 'reactstrap'
 const Profile = props => {
 	const users = props.users
 	const user = JSON.parse(localStorage.getItem('currentUser'))
+	const [newState, setNewRadio] = useState('')
 
 	const updateTest = async e => {
 		e.preventDefault()
@@ -15,6 +16,7 @@ const Profile = props => {
 		console.log(currentUser)
 		const name = e.target.name.value
 		currentUser.name = name
+		currentUser.avatar = newState.selectedOption
 		props.updateProfileTest(currentUser)
 		e.target.name.value = ''
 	}
@@ -34,11 +36,25 @@ const Profile = props => {
 
 	//console.log('haha', user.id)
 
+	const handleOptionChange = a => {
+		setNewRadio({
+			selectedOption: a.target.value
+		})
+	}
+
+	const epicSubmit = e => {
+		e.preventDefault()
+
+		console.log('You have selected:', newState.selectedOption)
+	}
+
 	return (
 		<div>
 			<img
 				src={
-					user.name === null ? require(`${user.avatar}`) : require('../images/avatars/wojak.png')
+					user.name === null
+						? require(`${user.avatar}`)
+						: require('../images/avatars/wojak.png')
 				}
 				className=' '
 				alt='kuva'
@@ -98,27 +114,36 @@ const Profile = props => {
 
 						<div className='row ml-2'>
 							<label>
-								<input type='radio' name='test' value='small'></input>
+								<input
+									type='radio'
+									name='test'
+									checked={newState.selectedOption === 'option1'}
+									onChange={handleOptionChange}
+									value='../images/icon1.png'
+								></input>
 								<img
 									src={require('../images/icon1.png')}
 									alt='male'
 									width='64'
 									height='64'
 									name='file'
-									type='file'
-									value={require('../images/icon1.png')}
 								></img>
 							</label>
 
 							<label>
-								<input type='radio' name='test' value='big'></input>
+								<input
+									type='radio'
+									name='test'
+									checked={newState.selectedOption === 'option1'}
+									onChange={handleOptionChange}
+									value='../images/icon2.png'
+								></input>
 								<img
 									src={require('../images/icon2.png')}
 									alt='female'
 									width='64'
 									height='64'
 									name='avatar1'
-									value='../images/icon2.png'
 								></img>
 							</label>
 						</div>
