@@ -9,21 +9,24 @@ const Reply = props => {
 	const users = props.users
 	const post = props.post
 	const auth = props.auth
+	const user = users.find(user => user.posts.find(p => p === post.id))
 
-	const usernamelol = (users, postid) => {
-		const user = users.find(user => user.posts.find(post => post === postid))
-		return user === undefined || user.name.length === 0 ? 'Anon' : user.name
-	}
 	return (
 		<div>
 			<div className='media surface mb-3 jumbotron' key={post.id}>
 				<div className='media-body inline background testi2'>
 					{/* Käyttäjän kuva */}
-
+					<img
+						src={user ? user.avatar : require('../images/profile.png')}
+						className='media-object imageToLeft '
+						alt='kuva'
+						width='64'
+						height='64'
+					/>
 					{/* Käyttäjän nimi (anon jos tyhjä) */}
 					<div clear='both'>
 						<h4 className='media-heading commentControl'>
-							{`${users === undefined ? null : usernamelol(users, post.id)} replies to `}
+							{`${user.name.length > 0 ? user.name : 'Anon'} replies to `}
 							<small className='text-muted commentControl'>{post.parentId}</small>
 						</h4>
 						<small className='text-muted commentControl'>{post.id}</small>

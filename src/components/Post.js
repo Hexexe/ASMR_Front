@@ -9,20 +9,21 @@ const Post = props => {
 	const users = props.users
 	const post = props.post
 	const auth = props.auth
-	const user = users ? users.find(user => user.posts.find(post => post === post.id)) : null
+	console.log(users)
+	const user = users === undefined ? null : users.find(user => user.posts.find(p => p === post.id))
 
 	return (
 		<div className='media surface mb-3 jumbotron ' key={post.id}>
 			<div className='media-body inline pt-3'>
 				{/* Käyttäjän kuva */}
 				<img
-					src={user ? user.avatar : null}
+					src={user !== null ? user.avatar : require('../images/profile.png')}
 					className='media-object imageToLeft '
 					alt='kuva'
 					width='64'
 					height='64'
 				/>
-				<h2 className='media-heading '>{`${user ? user.name : null}`}</h2>
+				<h2 className='media-heading '>{`${user !== null ? user.name : 'Anon'}`}</h2>
 				<small className='text-muted'>{post.id}</small>
 				<br />
 				{/* postauksen sisältö (jos kuva niin kuva myös)  */}

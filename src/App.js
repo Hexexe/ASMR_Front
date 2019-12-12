@@ -15,7 +15,7 @@ const App = props => {
 		props.checkUser()
 		props.initializeUsers()
 		props.initializePosts()
-	}, [props.posts.length])
+	}, [props.posts.length, props.users.length])
 
 	//yaysdfsdf
 	return (

@@ -3,7 +3,6 @@ import UserService from '../services/users'
 export const createUser = a => {
 	return async dispatch => {
 		const newUser = await UserService.register(a)
-		console.log(a)
 		dispatch({
 			type: 'NEW_USER',
 			data: newUser
@@ -23,10 +22,10 @@ export const initializeUsers = () => {
 
 export const updateProfile = a => {
 	return async dispatch => {
-		const users = await UserService.update(a)
+		const user = await UserService.update(a)
 		dispatch({
 			type: 'UP',
-			data: users
+			data: user
 		})
 	}
 }
@@ -37,8 +36,15 @@ const userReducer = (state = [], action) => {
 			return state.concat(action.data)
 		case 'INIT_U':
 			return action.data
-		case 'UP':
-			return action.data
+		case 'UP': {
+			console.log(action.data)
+			const id = action.data.id
+			const upUser = state.find(n => n.id === id)
+			console.log(upUser)
+			const updated = { ...upUser, avatar: upUser.avatar }
+			console.log(updated)
+			return state.map(p => (p.id !== id ? p : updated))
+		}
 		default:
 			return state
 	}

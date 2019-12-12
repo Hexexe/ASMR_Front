@@ -27,12 +27,13 @@ const CommentForm = props => {
 	return (
 		<div>
 			<button type='button' className='btn primary text-dark mt-3' onClick={toggle}>
-				Comment
+				Reply
 			</button>
 			<Modal isOpen={modal} toggle={toggle} className='surface textcolor border-dark customForm'>
 				<ModalBody className='surface'>
 					<Form onSubmit={addCommentN} encType='multipart/form-data'>
 						<div>
+							<h1>Reply</h1>
 							<Label className='sr-only'>Content</Label>
 							<textarea
 								className='card background textcolor border-dark'
