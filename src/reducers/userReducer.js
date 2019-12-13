@@ -34,18 +34,18 @@ export const updateProfile = a => {
 
 const userReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'NEW_USER':
-			return state.concat(action.data)
-		case 'INIT_U':
-			return action.data
-		case 'UP': {
-			const id = action.data.id
-			const upUser = state.find(n => n.id === id)
-			const updated = { ...upUser, avatar: upUser.avatar }
-			return state.map(p => (p.id !== id ? p : updated))
-		}
-		default:
-			return state
+	case 'NEW_USER':
+		return state.concat(action.data)
+	case 'INIT_U':
+		return action.data
+	case 'UP': {
+		const id = action.data.id
+		const upUser = state.find(n => n.id === id)
+		const updated = { ...upUser, avatar: upUser.avatar }
+		return state.map(p => (p.id !== id ? p : updated))
+	}
+	default:
+		return state
 	}
 }
 export default userReducer

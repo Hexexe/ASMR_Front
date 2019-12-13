@@ -61,34 +61,34 @@ export const addComment = fd => {
 
 const postReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'NEW_POST': {
-			return state.concat(action.data)
-		}
-		case 'INIT_POSTS': {
-			return action.data
-		}
-		case 'LIKE': {
-			const id = action.data.id
-			const likedPost = state.find(n => n.id === id)
-			const liked = { ...likedPost, wp: likedPost.wp + 1 }
-			return state.map(p => (p.id !== id ? p : liked))
-		}
-		case 'DISLIKE': {
-			const id = action.data.id
-			const dislikedPost = state.find(n => n.id === id)
-			const disliked = { ...dislikedPost, gtfo: dislikedPost.gtfo + 1 }
-			return state.map(p => (p.id !== id ? p : disliked))
-		}
-		case 'NEW_COMMENT': {
-			return state.concat(action.data)
-		}
-		case 'PURGE': {
-			const index = state.findIndex(data => data.id === action.data.id)
-			return [...state.slice(0, index), ...state.slice(index + 1)]
-		}
-		default: {
-			return state
-		}
+	case 'NEW_POST': {
+		return state.concat(action.data)
+	}
+	case 'INIT_POSTS': {
+		return action.data
+	}
+	case 'LIKE': {
+		const id = action.data.id
+		const likedPost = state.find(n => n.id === id)
+		const liked = { ...likedPost, wp: likedPost.wp + 1 }
+		return state.map(p => (p.id !== id ? p : liked))
+	}
+	case 'DISLIKE': {
+		const id = action.data.id
+		const dislikedPost = state.find(n => n.id === id)
+		const disliked = { ...dislikedPost, gtfo: dislikedPost.gtfo + 1 }
+		return state.map(p => (p.id !== id ? p : disliked))
+	}
+	case 'NEW_COMMENT': {
+		return state.concat(action.data)
+	}
+	case 'PURGE': {
+		const index = state.findIndex(data => data.id === action.data.id)
+		return [...state.slice(0, index), ...state.slice(index + 1)]
+	}
+	default: {
+		return state
+	}
 	}
 }
 
