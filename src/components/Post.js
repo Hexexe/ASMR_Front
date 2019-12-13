@@ -22,7 +22,9 @@ const Post = props => {
 					width='64'
 					height='64'
 				/>
-				<h2 className='media-heading '>{`${user === undefined ? 'Anon' : user.name}`}</h2>
+				<h2 className='media-heading '>{`${
+					user && user.name.length !== 0 ? user.name : 'Anon'
+				}`}</h2>
 				<small className='text-muted'>{post.id}</small>
 				<br />
 				<Linkify>

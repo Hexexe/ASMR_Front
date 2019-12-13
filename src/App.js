@@ -11,18 +11,12 @@ import LogoutForm from './components/LogoutForm'
 import CookieConsent from 'react-cookie-consent'
 
 const App = props => {
-	/* 	const yoink = async () => {
-		await props.checkUser()
-		await props.initializeUsers()
-		await props.initializePosts()
-	} */
 	useEffect(() => {
 		props.checkUser()
 		props.initializeUsers()
 		props.initializePosts()
 	}, [props.users.length, props.posts.length])
 
-	//yaysdfsdf
 	return (
 		<div className='textcolor'>
 			{props.auth.username === null ? <LoginForm /> : <LogoutForm />}

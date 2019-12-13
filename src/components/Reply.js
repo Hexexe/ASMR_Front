@@ -27,7 +27,7 @@ const Reply = props => {
 					{/* Käyttäjän nimi (anon jos tyhjä) */}
 					<div clear='both'>
 						<h4 className='media-heading commentControl'>
-							{`${user === undefined ? 'Anon' : user.name} replies to `}
+							{`${user && user.name.length !== 0 ? user.name : 'Anon'} replies to `}
 							<small className='text-muted commentControl'>{post.parentId}</small>
 						</h4>
 						<small className='text-muted commentControl'>{post.id}</small>
