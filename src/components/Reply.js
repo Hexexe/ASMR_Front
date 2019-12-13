@@ -16,7 +16,6 @@ const Reply = props => {
 		<div>
 			<div className='media surface mb-3 jumbotron' key={post.id}>
 				<div className='media-body inline background testi2'>
-					{/* Käyttäjän kuva */}
 					<img
 						src={user === undefined ? require('../images/avatars/wojak.png') : user.avatar}
 						className='media-object imageToLeft '
@@ -24,7 +23,6 @@ const Reply = props => {
 						width='64'
 						height='64'
 					/>
-					{/* Käyttäjän nimi (anon jos tyhjä) */}
 					<div clear='both'>
 						<h4 className='media-heading commentControl'>
 							{`${user && user.name.length !== 0 ? user.name : 'Anon'} replies to `}
@@ -34,7 +32,6 @@ const Reply = props => {
 					</div>
 
 					<br />
-					{/* postauksen sisältö (jos kuva niin kuva myös)  */}
 					<Linkify>
 						<p className='commentControl'>{post.content}</p>
 					</Linkify>
@@ -44,10 +41,6 @@ const Reply = props => {
 					<small className='text-muted commentControl'>
 						{dateFormat(post.date, 'HH:MM - d.m.yy')}
 					</small>
-					{/* päiväys  */}
-
-					{/* Like/Dislike  */}
-
 					<div className='listStyling commentControl'>
 						<ul className=''>
 							<li className=''>

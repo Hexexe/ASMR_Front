@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-//import PropTypes from 'prop-types'
 import { addComment } from '../reducers/postReducer'
 import { connect } from 'react-redux'
 import { Form } from 'reactstrap'
 import { Button, Modal, ModalBody, Input, Label } from 'reactstrap'
 
 const CommentForm = props => {
+	const [modal, setModal] = useState(false)
+	const toggle = () => setModal(!modal)
+	const id = props.id
 	const epicStyling = {
 		width: '100%'
 	}
-	const id = props.id
+
 	const addCommentN = async e => {
 		e.preventDefault()
 		const formData = new FormData()
@@ -20,9 +22,6 @@ const CommentForm = props => {
 		e.target.content.value = ''
 		e.target.file.value = null
 	}
-
-	const [modal, setModal] = useState(false)
-	const toggle = () => setModal(!modal)
 
 	return (
 		<div>
@@ -63,11 +62,6 @@ const CommentForm = props => {
 	)
 }
 
-/* commentForm.propTypes = {
-	addPost: PropTypes.func.isRequired,
-	titleS: PropTypes.object.isRequired,
-	contentS: PropTypes.object.isRequired
-} */
 const mapStateToProps = state => {
 	return {
 		posts: state.posts

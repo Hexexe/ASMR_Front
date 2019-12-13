@@ -6,7 +6,6 @@ import Reply from './Reply'
 const CommentList = props => {
 	const posts = props.posts
 	const id = props.id
-
 	const sortedCom = posts.sort((a, b) => {
 		a = new Date(a.date)
 		b = new Date(b.date)

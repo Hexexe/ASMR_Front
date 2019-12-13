@@ -4,10 +4,6 @@ import { like, dislike } from '../reducers/postReducer'
 import ScrollAnimation from 'react-animate-on-scroll'
 import Post from './Post'
 
-const epicStyling = {
-	width: '55rem'
-}
-
 const PostList = props => {
 	const posts = props.posts
 	const sortedPosts = posts.sort((a, b) => {
@@ -15,6 +11,9 @@ const PostList = props => {
 		b = new Date(b.date)
 		return a > b ? -1 : a < b ? 1 : 0
 	})
+	const epicStyling = {
+		width: '55rem'
+	}
 
 	return (
 		<div className='container textcolor' style={epicStyling}>

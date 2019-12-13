@@ -12,6 +12,7 @@ const LoginForm = props => {
 		e.target.username.value = ''
 		e.target.password.value = ''
 	}
+
 	return (
 		<nav className='navbar fixed-top navbar-expand-md surface'>
 			<button
@@ -31,11 +32,7 @@ const LoginForm = props => {
 						<form className='form-inline ' onSubmit={handleLoginN}>
 							<div className='form-row'>
 								<div className='col'>
-									<input
-										className='form-control mr-sm-0 '
-										placeholder='username'
-										name='username'
-									/>
+									<input className='form-control mr-sm-0 ' placeholder='username' name='username' />
 								</div>
 								<div className='col'>
 									<input

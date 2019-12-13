@@ -8,10 +8,7 @@ const Footer = () => (
 					<div className='mb-5 flex-center'>
 						<div className='footer-copyright text-center py-3'>
 							© 2019 Copyright:
-							<a href='https://mdbootstrap.com/education/bootstrap/'>
-								{' '}
-								MDBootstrap.com
-							</a>
+							<a href='https://mdbootstrap.com/education/bootstrap/'> MDBootstrap.com</a>
 						</div>
 					</div>
 				</div>
