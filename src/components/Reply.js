@@ -10,8 +10,7 @@ const Reply = props => {
 	const users = props.users
 	const post = props.post
 	const auth = props.auth
-	const user =
-		users === undefined ? undefined : users.find(user => user.posts.find(p => p === post.id))
+	const user = users.find(user => user.posts.find(p => p === post.id))
 
 	return (
 		<div>
@@ -28,7 +27,7 @@ const Reply = props => {
 					{/* Käyttäjän nimi (anon jos tyhjä) */}
 					<div clear='both'>
 						<h4 className='media-heading commentControl'>
-							{`${user === undefined || user.name.length === 0 ? 'Anon' : user.name} replies to `}
+							{`${user === undefined ? 'Anon' : user.name} replies to `}
 							<small className='text-muted commentControl'>{post.parentId}</small>
 						</h4>
 						<small className='text-muted commentControl'>{post.id}</small>

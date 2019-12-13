@@ -10,12 +10,11 @@ const Post = props => {
 	const users = props.users
 	const post = props.post
 	const auth = props.auth
-	const user = users === undefined ? null : users.find(user => user.posts.find(p => p === post.id))
+	const user = users.find(user => user.posts.find(p => p === post.id))
 
 	return (
 		<div className='media surface mb-3 jumbotron ' key={post.id}>
 			<div className='media-body inline pt-3'>
-				{/* Käyttäjän kuva */}
 				<img
 					src={user === undefined ? require('../images/avatars/wojak.png') : user.avatar}
 					className='media-object imageToLeft '
@@ -23,12 +22,9 @@ const Post = props => {
 					width='64'
 					height='64'
 				/>
-				<h2 className='media-heading '>{`${
-					user === undefined || user.name.length === 0 ? 'Anon' : user.name
-				}`}</h2>
+				<h2 className='media-heading '>{`${user === undefined ? 'Anon' : user.name}`}</h2>
 				<small className='text-muted'>{post.id}</small>
 				<br />
-				{/* postauksen sisältö (jos kuva niin kuva myös)  */}
 				<Linkify>
 					<p className='commentControl pr-3'>{post.content}</p>
 				</Linkify>
@@ -37,11 +33,9 @@ const Post = props => {
 						<img className='mb-3 imageStyling commentControl' src={post.postImg.url} alt='kuva' />
 					</a>
 				)}
-				{/* päiväys  */}
 				<div className='text-muted commentControl'>
 					<small>{dateFormat(post.date, 'HH:MM - d. mmmm yyyy')}</small>
 				</div>
-				{/* Like/Dislike  */}
 				<div className='horizontalLineUp'></div>
 				<div className='listStyling commentControl'>
 					<ul className=''>
