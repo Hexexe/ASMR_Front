@@ -15,7 +15,7 @@ const App = props => {
 		props.checkUser()
 		props.initializeUsers()
 		props.initializePosts()
-	}, [props.users.length, props.posts.length])
+	}, [])
 
 	return (
 		<div className='textcolor'>

@@ -18,7 +18,7 @@ const Profile = props => {
 		const currentUser = findCurrent(users)
 		const name = e.target.name.value
 		currentUser.name = name
-		currentUser.avatar = newState.selectedOption
+		currentUser.avatar = newState.selectedOption === null ? user.avatar : newState.selectedOption
 		props.updateProfile(currentUser)
 		e.target.name.value = ''
 		setModal(!modal)

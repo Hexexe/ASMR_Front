@@ -39,12 +39,9 @@ const userReducer = (state = initialState, action) => {
 		case 'INIT_U':
 			return action.data
 		case 'UP': {
-			console.log(action.data)
 			const id = action.data.id
 			const upUser = state.find(n => n.id === id)
-			console.log(upUser)
 			const updated = { ...upUser, avatar: upUser.avatar }
-			console.log(updated)
 			return state.map(p => (p.id !== id ? p : updated))
 		}
 		default:

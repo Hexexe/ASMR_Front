@@ -38,9 +38,10 @@ const Reply = props => {
 					{post.postImg === null ? null : (
 						<img className='mb-3 imageStyling' src={post.postImg.url} alt='kuva' />
 					)}
-					<small className='text-muted commentControl'>
-						{dateFormat(post.date, 'HH:MM - d.m.yy')}
-					</small>
+					<div className='text-muted commentControl'>
+						<small>{dateFormat(post.date, 'HH:MM - d. mmmm yyyy')}</small>
+					</div>
+					<div className='horizontalLineUp'></div>
 					<div className='listStyling commentControl'>
 						<ul className=''>
 							<li className=''>
@@ -65,7 +66,6 @@ const Reply = props => {
 									onClick={() => props.dislike(post)}
 								/>
 							</li>
-							{/* Tästä pitäs aueta comment form  */}
 						</ul>
 					</div>
 					<div className='horizontalLineDown'></div>
